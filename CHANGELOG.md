@@ -1,5 +1,22 @@
 # v0.1.1 (Wed Aug 18 2021)
 
+#### 🐛 Bug Fix
+
+- Feature/workflow [#1](https://github.com/techandmedia/dbeuh/pull/1) ([@techandmedia](https://github.com/techandmedia))
+
+#### ⚠️ Pushed to `main`
+
+- Init Storybook ([@techandmedia](https://github.com/techandmedia))
+- Initialize project using Create React App ([@techandmedia](https://github.com/techandmedia))
+
+#### Authors: 1
+
+- Eko Andri Subarnanto ([@techandmedia](https://github.com/techandmedia))
+
+---
+
+# v0.1.1 (Wed Aug 18 2021)
+
 #### ⚠️ Pushed to `main`
 
 - Init Storybook ([@techandmedia](https://github.com/techandmedia))
