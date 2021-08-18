@@ -22,3 +22,5 @@ npm ls babel-loader
 ### Publishing to NPM
 
 https://storybook.js.org/tutorials/design-systems-for-developers/react/en/distribute/
+
+Don't forget to login to npm in your terminal
