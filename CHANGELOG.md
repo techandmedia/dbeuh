@@ -1,3 +1,16 @@
+# v0.1.2 (Mon Oct 04 2021)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/workflow' ([@techandmedia](https://github.com/techandmedia))
+- Ok ([@techandmedia](https://github.com/techandmedia))
+
+#### Authors: 1
+
+- Eko Andri Subarnanto ([@techandmedia](https://github.com/techandmedia))
+
+---
+
 # v0.1.1 (Wed Aug 18 2021)
 
 #### 🐛 Bug Fix
