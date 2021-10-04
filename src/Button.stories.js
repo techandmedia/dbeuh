@@ -14,7 +14,7 @@ const CustomButton = styled.button`
 `;
 
 function ButtonWrapper(props) {
-  return <CustomButton {...props}/>;
+  return <CustomButton {...props} />;
 }
 
 export default {
@@ -75,7 +75,7 @@ export const AllButtons = (args) => (
   </div>
 );
 
-AllButtons.storyName= 'all buttons';
+AllButtons.storyName = 'all buttons';
 
 export const buttonWrapper = (args) => (
   <div>
@@ -144,7 +144,7 @@ export const buttonWrapper = (args) => (
   </div>
 );
 
-buttonWrapper.storyName='button wrapper';
+buttonWrapper.storyName = 'button wrapper';
 
 export const AnchorWrapper = (args) => (
   <div>
@@ -162,59 +162,26 @@ export const AnchorWrapper = (args) => (
     <Button ButtonWrapper={StoryLinkWrapper} appearance="outline" href="http://storybook.js.org">
       Outline
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="primaryOutline"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="primaryOutline" href="http://storybook.js.org">
       Outline primary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="secondaryOutline"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="secondaryOutline" href="http://storybook.js.org">
       Outline secondary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="primary"
-      isDisabled
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="primary" isDisabled href="http://storybook.js.org">
       Disabled
     </Button>
     <br />
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="primary"
-      isLoading
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="primary" isLoading href="http://storybook.js.org">
       Primary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="secondary"
-      isLoading
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="secondary" isLoading href="http://storybook.js.org">
       Secondary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="tertiary"
-      isLoading
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="tertiary" isLoading href="http://storybook.js.org">
       Tertiary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="outline"
-      isLoading
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="outline" isLoading href="http://storybook.js.org">
       Outline
     </Button>
     <Button
@@ -227,36 +194,16 @@ export const AnchorWrapper = (args) => (
       Outline
     </Button>
     <br />
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="primary"
-      size="small"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="primary" size="small" href="http://storybook.js.org">
       Primary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="secondary"
-      size="small"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="secondary" size="small" href="http://storybook.js.org">
       Secondary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="tertiary"
-      size="small"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="tertiary" size="small" href="http://storybook.js.org">
       Tertiary
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="outline"
-      size="small"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="outline" size="small" href="http://storybook.js.org">
       Outline
     </Button>
     <Button
@@ -277,16 +224,11 @@ export const AnchorWrapper = (args) => (
     >
       <Icon icon="link" aria-label="Link" />
     </Button>
-    <Button
-      ButtonWrapper={StoryLinkWrapper}
-      appearance="outline"
-      size="small"
-      href="http://storybook.js.org"
-    >
+    <Button ButtonWrapper={StoryLinkWrapper} appearance="outline" size="small" href="http://storybook.js.org">
       <Icon icon="link" />
       Link
     </Button>
   </div>
 );
 
-AnchorWrapper.storyName= 'anchor wrapper';
+AnchorWrapper.storyName = 'anchor wrapper';

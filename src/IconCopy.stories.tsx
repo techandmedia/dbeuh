@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Icon } from './Icon';
+import { IconCopy } from './IconCopy';
 import { icons } from './shared/icons';
 
 const Meta = styled.div`
@@ -50,7 +50,7 @@ const List = styled.ul`
 
 export default {
   title: 'Design System/Icon',
-  component: Icon,
+  component: IconCopy,
 };
 
 export function Labels(args) {
@@ -60,7 +60,7 @@ export function Labels(args) {
       <List>
         {Object.keys(icons).map((key) => (
           <Item key={key}>
-            <Icon icon={key} aria-hidden />
+            <IconCopy icon={key} aria-hidden block={false} />
             <Meta>{key}</Meta>
           </Item>
         ))}
@@ -74,7 +74,7 @@ export function NoLabels(args) {
     <List>
       {Object.keys(icons).map((key) => (
         <Item minimal key={key}>
-          <Icon icon={key} aria-label={key} />
+          <IconCopy icon={key} aria-label={key} block={false} />
         </Item>
       ))}
     </List>
@@ -86,7 +86,7 @@ NoLabels.storyName = 'no labels';
 export function Inline(args) {
   return (
     <Fragment>
-      this is an inline <Icon {...args} /> icon (default)
+      this is an inline <IconCopy {...args} /> icon (default)
     </Fragment>
   );
 }
@@ -98,7 +98,7 @@ Inline.args = {
 export function Block(args) {
   return (
     <Fragment>
-      this is a block <Icon {...args} /> icon
+      this is a block <IconCopy {...args} /> icon
     </Fragment>
   );
 }
