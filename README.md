@@ -74,6 +74,57 @@ npx -p @storybook/cli sb init
 yarn storybook
 ```
 
+Add GlobalStyle if using styled-components
+
+```js
+// src/shared/global.js
+import { createGlobalStyle, css } from 'styled-components';
+
+import { color, typography } from './styles';
+
+// Add this line
+export const fontUrl = 'https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900';
+
+export const bodyStyles = css`
+  /* Same as before */
+`;
+
+export const GlobalStyle = createGlobalStyle`
+ body {
+   ${bodyStyles}
+ }`;
+```
+
+Use the GlobalStyle “component”
+
+```js
+// .storybook/preview.js
++ import React from 'react';
+
++ import { GlobalStyle } from '../src/shared/global';
+
++ // Global decorator to apply the styles to all stories
++ export const decorators = [
++   Story => (
++     <>
++       <GlobalStyle />
++       <Story />
++     </>
++   ),
++ ];
+
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+};
+```
+
+Add Global Font
+
+```js
+// .storybook/preview-head.html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900" />
+```
+
 4. [Build UI components](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/build/)
 
 ```bash
