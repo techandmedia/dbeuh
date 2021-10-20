@@ -55,6 +55,12 @@ tsconfig.json
 }
 ```
 
+INSTALL Ant Design
+
+```bash
+yarn add antd
+```
+
 2. Commit the code to github
 
 3. [Build UI components](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/build/)
@@ -71,65 +77,83 @@ Install Storybook
 ```bash
 # Install and run Storybook
 npx -p @storybook/cli sb init
-yarn storybook
+# Jika sebelumnya sudah pernah install storybook, gunakan option -f
+npx -p @storybook/cli sb init -f
+
+# buka file .storybook\preview.js
+# import file css ant design
+import 'antd/dist/antd.css';
 ```
 
-Add GlobalStyle if using styled-components
-
 ```js
-// src/shared/global.js
-import { createGlobalStyle, css } from 'styled-components';
+// modifikasi file contoh Button.tsx
+import './button.css';
+import { Button, ButtonProps } from 'antd';
 
-import { color, typography } from './styles';
+interface IButtonProps extends ButtonProps {
+  label: string;
+}
 
-// Add this line
-export const fontUrl = 'https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900';
+export default function NewButton(props: IButtonProps) {
+  return <Button {...props}>{props.label ? props.label : props.children}</Button>;
+}
 
-export const bodyStyles = css`
-  /* Same as before */
-`;
+// dan file Button.stories.tsx
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { default as Button } from './Button';
 
-export const GlobalStyle = createGlobalStyle`
- body {
-   ${bodyStyles}
- }`;
-```
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export default {
+  title: 'Example/Button',
+  component: Button,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+} as ComponentMeta<typeof Button>;
 
-Use the GlobalStyle “component”
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-```js
-// .storybook/preview.js
-+ import React from 'react';
-
-+ import { GlobalStyle } from '../src/shared/global';
-
-+ // Global decorator to apply the styles to all stories
-+ export const decorators = [
-+   Story => (
-+     <>
-+       <GlobalStyle />
-+       <Story />
-+     </>
-+   ),
-+ ];
-
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+export const Primary = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Primary.args = {
+  type: 'primary',
+  label: 'Button',
 };
+
+export const Default = Template.bind({});
+Default.args = {
+  type: 'default',
+  label: 'Default',
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  size: 'large',
+  label: 'Button',
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  size: 'small',
+  label: 'Button',
+};
+
+export const Children = Template.bind({});
+Children.args = {
+  size: 'small',
+  children: <div>Children</div>,
+};
+
+
+
 ```
-
-Add Global Font
-
-```js
-// .storybook/preview-head.html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900" />
-```
-
-4. [Build UI components](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/build/)
 
 ```bash
-# Code formatting and linting for hygiene
-yarn add --dev prettier
+# jalankan storybook
+yarn storybook
 
-# Enable the Format on Save editor.formatOnSave if you haven’t done so already. Once you’ve installed Prettier, you should find that it auto-formats your code whenever you save a file.
+# pastikan untuk melakukan refresh storybook setiap kali melakukan perubahan story
+# karena kadang error component return wrong type
 ```
