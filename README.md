@@ -258,3 +258,49 @@ export const WithIcon: ComponentStory<typeof Button> = (args) => (
 );
 
 ```
+
+```js
+// Menambahkan kontrol selection secara global
+export default {
+  title: 'Design System/Button',
+  component: Button,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    backgroundColor: { control: 'color' },
+    // props size harus sudah ada di Interface Button
+    size: {
+      options: ['small', 'medium', 'large'],
+      control: {
+        type: 'select',
+        labels: {
+          small: 'small',
+          middle: 'middle',
+          large: 'large',
+        },
+      },
+    },
+  },
+} as ComponentMeta<typeof Button>;
+// Perhatikan bahwa jika args tidak di-assign sebagai props, maka control ini tidak
+// akan mempengaruhi component yang bersangkutan
+export const BlockButton: ComponentStory<typeof Button> = (args) => (
+  <>
+    <Button type="primary" label="Primary" block /> // control size tidak akan mengubah button ini
+    <Button {...args} type="dashed" label="Dashed" block /> // tapi akan mengubah button ini
+  </>
+);
+// Kecuali melakukan binding yang akan meng-assign semua props ke component
+export const Primary = Template.bind({});
+Primary.args = {
+  type: 'primary',
+  label: 'Button',
+};
+
+// Menambahkan control "disabled" per component
+export const Controls = Template.bind({});
+Controls.args = {
+  type: 'primary',
+  label: 'Primary',
+  disabled: false, // props disabled harus sudah ada di Interface Button
+};
+```

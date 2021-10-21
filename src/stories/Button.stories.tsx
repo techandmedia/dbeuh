@@ -10,6 +10,31 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
+    size: {
+      options: ['small', 'medium', 'large'],
+      control: {
+        type: 'select',
+        labels: {
+          small: 'small',
+          middle: 'middle',
+          large: 'large',
+        },
+      },
+    },
+    type: {
+      options: ['default', 'primary', 'ghost', 'dashed', 'link', 'text'],
+      control: {
+        type: 'select',
+        labels: {
+          default: 'default',
+          primary: 'primary',
+          ghost: 'ghost',
+          dashed: 'dashed',
+          link: 'link',
+          text: 'text',
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Button>;
 
@@ -21,12 +46,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   type: 'primary',
   label: 'Button',
-};
-
-export const Default = Template.bind({});
-Default.args = {
-  type: 'default',
-  label: 'Default',
+  disabled: false,
 };
 
 export const Children = Template.bind({});
@@ -62,7 +82,7 @@ export const AllButtonTypes: ComponentStory<typeof Button> = (args) => (
 export const BlockButton: ComponentStory<typeof Button> = (args) => (
   <>
     <Button type="primary" label="Primary" block />
-    <Button type="dashed" label="Dashed" block />
+    <Button {...args} type="dashed" label="Dashed" block />
   </>
 );
 
@@ -95,4 +115,37 @@ export const WithIcon: ComponentStory<typeof Button> = (args) => (
       Search
     </Button>
   </>
+);
+
+export const GhostButtons: ComponentStory<typeof Button> = (args) => (
+  <div
+    style={{
+      background: 'rgb(190, 200, 200)',
+      padding: '1em',
+    }}
+  >
+    <Button type="primary" ghost>
+      Primary
+    </Button>
+    <Button ghost>Default</Button>
+    <Button type="dashed" ghost>
+      Dashed
+    </Button>
+    <Button type="primary" danger ghost>
+      Danger
+    </Button>
+  </div>
+);
+
+export const Controls = Template.bind({});
+Controls.args = {
+  type: 'primary',
+  label: 'Primary',
+  disabled: false,
+};
+
+export const Actions: ComponentStory<typeof Button> = (args) => (
+  <Button type="primary" onClick={() => console.log('From the button')}>
+    Primary
+  </Button>
 );
