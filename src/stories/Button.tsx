@@ -1,4 +1,3 @@
-import './button.css';
 import { Button, ButtonProps } from 'antd';
 
 interface IButtonProps extends ButtonProps {
