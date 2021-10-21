@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { default as Button } from './Button';
+import { NewButton as Button } from './Button';
 import { Tooltip } from './helpers';
 import { SearchOutlined } from './icons';
 
@@ -36,6 +36,9 @@ export default {
       },
     },
   },
+  parameters: {
+    componentSubtitle: 'Displays an image that represents a user or organization',
+  },
 } as ComponentMeta<typeof Button>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -52,6 +55,11 @@ Primary.args = {
 export const Children = Template.bind({});
 Children.args = {
   children: <div>Children</div>,
+};
+Children.parameters = {
+  docs: {
+    storyDescription: 'You can render a React element as children',
+  },
 };
 
 export const Sizes: ComponentStory<typeof Button> = (args) => (

@@ -26,6 +26,6 @@ And 4 other properties additionally
 - disabled: when actions are not available.
 - loading: add loading spinner in button, avoiding multiple submits too.
 **/
-export default function NewButton(props: IButtonProps) {
+export function NewButton(props: IButtonProps) {
   return <Button {...props}>{props.label ? props.label : props.children}</Button>;
 }

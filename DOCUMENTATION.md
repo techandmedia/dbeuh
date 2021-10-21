@@ -59,4 +59,4 @@ Children.parameters = {
 2. Stories juga dapat dibuat dengan file mdx instead of js
 <!-- Nngga bisa2 anjim T_T -->
 3. SKIP Custom mdx
-4. Publish documentation -- SKIP jika menggunakan custom mdx, tidak perlu build
+4. Publish documentation -- SKIP jika menggunakan custom mdx, tidak perlu build, dengan setup yang sekarang sudah cukup

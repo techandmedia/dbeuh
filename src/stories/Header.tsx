@@ -1,4 +1,4 @@
-import { default as Button } from './Button';
+import { NewButton as Button } from './Button';
 import './header.css';
 
 interface HeaderProps {
