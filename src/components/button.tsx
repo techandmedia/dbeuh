@@ -1,12 +1,11 @@
+import React from 'react';
 import { Button, ButtonProps } from 'antd';
 
-interface IButtonProps extends ButtonProps {
-  label?: string;
-}
+// export interface IButtonProps extends ButtonProps {
+//   label?: string;
+// }
 
 /**
-To trigger an operation.
-
 When To Use
 
 A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.
@@ -26,6 +25,6 @@ And 4 other properties additionally
 - disabled: when actions are not available.
 - loading: add loading spinner in button, avoiding multiple submits too.
 **/
-export function NewButton(props: IButtonProps) {
-  return <Button {...props}>{props.label ? props.label : props.children}</Button>;
+export function NewButton(props: ButtonProps) {
+  return <Button {...props}>{props.children}</Button>;
 }

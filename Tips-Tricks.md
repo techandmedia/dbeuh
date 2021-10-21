@@ -24,3 +24,5 @@ npm ls babel-loader
 https://storybook.js.org/tutorials/design-systems-for-developers/react/en/distribute/
 
 Don't forget to login to npm in your terminal
+
+### Tidak perlu rollup untuk bundle typescript dan ant design

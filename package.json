@@ -4,24 +4,33 @@
   "repository": "https://github.com/techandmedia/dbeuh.git",
   "author": "Eko Andri S",
   "license": "MIT",
-  "version": "0.1.2",
+  "version": "0.1.10",
   "private": false,
   "scripts": {
     "prebuild": "rimraf dist",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx}\"",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "rimraf lib && yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "yarn prebuild && build-storybook -s public",
     "build-st": "yarn prebuild && build-storybook -o ./dist"
   },
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "antd": "^4.16.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3"
+  },
+  "peerDependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.16.13",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.3.12",
@@ -33,6 +42,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "postcss": "^8.3.10",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "typescript": "4.1.6"
@@ -89,5 +99,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "files": [
+    "/lib"
+  ]
 }

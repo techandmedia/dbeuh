@@ -1,7 +1,8 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NewButton as Button } from './Button';
-import { Tooltip } from './helpers';
-import { SearchOutlined } from './icons';
+import { NewButton as Button } from '../components/button';
+import { SearchOutlined } from '../components/icons';
+import { Tooltip } from '../components/tooltip';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -37,7 +38,7 @@ export default {
     },
   },
   parameters: {
-    componentSubtitle: 'Displays an image that represents a user or organization',
+    componentSubtitle: 'To trigger an operation',
   },
 } as ComponentMeta<typeof Button>;
 
