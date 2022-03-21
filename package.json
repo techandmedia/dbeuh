@@ -1,106 +1,58 @@
 {
-  "name": "@wsh4and/dbeuh",
-  "description": "Design System with Ant Design",
-  "repository": "https://github.com/techandmedia/dbeuh.git",
-  "author": "Eko Andri S",
+  "name": "dbeuh",
+  "version": "0.0.0",
   "license": "MIT",
-  "version": "0.1.10",
-  "private": false,
   "scripts": {
-    "prebuild": "rimraf dist",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx}\"",
-    "build": "rimraf lib && yarn build:esm && yarn build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "yarn prebuild && build-storybook -s public",
-    "build-st": "yarn prebuild && build-storybook -o ./dist"
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test"
   },
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
-  "types": "./lib/esm/index.d.ts",
+  "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.16.13",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
-  },
-  "peerDependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.16.13",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@nrwl/next": "13.9.3",
+    "antd": "^4.19.2",
+    "core-js": "^3.6.5",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-color": "^2.19.3",
+    "react-dom": "17.0.2",
+    "regenerator-runtime": "0.13.7",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-essentials": "^6.3.12",
-    "@storybook/addon-links": "^6.3.12",
-    "@storybook/node-logger": "^6.3.12",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.12",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "postcss": "^8.3.10",
-    "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
-    "typescript": "4.1.6"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "babel": {},
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "files": [
-    "/lib"
-  ]
+    "@nrwl/cli": "13.9.3",
+    "@nrwl/cypress": "13.9.3",
+    "@nrwl/eslint-plugin-nx": "13.9.3",
+    "@nrwl/jest": "13.9.3",
+    "@nrwl/linter": "13.9.3",
+    "@nrwl/next": "^13.9.3",
+    "@nrwl/react": "13.9.3",
+    "@nrwl/web": "13.9.3",
+    "@nrwl/workspace": "13.9.3",
+    "@testing-library/react": "12.1.4",
+    "@testing-library/react-hooks": "7.0.2",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.40",
+    "@types/react-dom": "17.0.13",
+    "@typescript-eslint/eslint-plugin": "~5.10.0",
+    "@typescript-eslint/parser": "~5.10.0",
+    "babel-jest": "27.2.3",
+    "cypress": "^9.1.0",
+    "eslint": "~8.7.0",
+    "eslint-config-next": "12.1.1-canary.3",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.29.3",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "jest": "27.2.3",
+    "nx": "13.9.3",
+    "prettier": "^2.5.1",
+    "react-test-renderer": "17.0.2",
+    "ts-jest": "27.0.5",
+    "typescript": "~4.5.2"
+  }
 }

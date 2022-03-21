@@ -1,306 +1,94 @@
-# Getting Started with Storybook
 
-Step By Step Storybook
 
-[Design Systems for Developers](https://storybook.js.org/tutorials/design-systems-for-developers).
+# Dbeuh
 
-1. [Architecture](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/architecture/)
+This project was generated using [Nx](https://nx.dev).
 
-```bash
-# Clone the example repo
-npx degit chromaui/learnstorybook-design-system-template your-local-folder
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-# Or if prefer typescript template
-npx create-react-app your-local-folder --template typescript
-# Make sure to move unnecessary package to devDependencies
+🔎 **Smart, Fast and Extensible Build System**
 
-# Manually add typecript to existing project
-# Make sure it is the officialy support version for Storybook
-yarn add --dev typescript@4.3.1
-# Add tsconfig.json
-cd your-local-folder
+## Adding capabilities to your workspace
 
-# Install the dependencies
-yarn install
-```
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-tsconfig.json
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-```js
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-  ]
-}
-```
+Below are our core plugins:
 
-INSTALL Ant Design
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-```bash
-yarn add antd
-```
+There are also many [community plugins](https://nx.dev/community) you could add.
 
-2. Commit the code to github
+## Generate an application
 
-3. [Build UI components](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/build/)
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-```bash
-# Code formatting and linting for hygiene
-yarn add --dev prettier
+> You can use any of the plugins above to generate applications as well.
 
-# Enable the Format on Save editor.formatOnSave if you haven’t done so already. Once you’ve installed Prettier, you should find that it auto-formats your code whenever you save a file.
-```
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
-Install Storybook
+## Generate a library
 
-```bash
-# Install and run Storybook
-npx -p @storybook/cli sb init
-# Jika sebelumnya sudah pernah install storybook, gunakan option -f
-npx -p @storybook/cli sb init -f
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
-# buka file .storybook\preview.js
-# import file css ant design
-import 'antd/dist/antd.css';
-```
+> You can also use any of the plugins above to generate libraries as well.
 
-```js
-// modifikasi file contoh Button.tsx
-import './button.css';
-import { Button, ButtonProps } from 'antd';
+Libraries are shareable across libraries and applications. They can be imported from `@dbeuh/mylib`.
 
-interface IButtonProps extends ButtonProps {
-  label: string;
-}
+## Development server
 
-export default function NewButton(props: IButtonProps) {
-  return <Button {...props}>{props.label ? props.label : props.children}</Button>;
-}
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-// dan file Button.stories.tsx
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { default as Button } from './Button';
+## Code scaffolding
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'Example/Button',
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as ComponentMeta<typeof Button>;
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+## Build
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  type: 'primary',
-  label: 'Button',
-};
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-export const Default = Template.bind({});
-Default.args = {
-  type: 'default',
-  label: 'Default',
-};
+## Running unit tests
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
-};
+Run `nx affected:test` to execute the unit tests affected by a change.
 
-export const Children = Template.bind({});
-Children.args = {
-  children: <div>Children</div>,
-};
-```
+## Running end-to-end tests
 
-```bash
-# jalankan storybook
-yarn storybook
+Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
-# pastikan untuk melakukan refresh storybook setiap kali melakukan perubahan story
-# karena kadang error component return wrong type
-```
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-```js
-// Modifikasi button stories menjadi seperti ini
-// Jangan lupa untuk menambahkan import Tooltip dan Icons
-// Agar rapi, import dari folder lain
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { default as Button } from './Button';
-import { Tooltip } from './helpers';
-import { SearchOutlined } from './icons';
+## Understand your workspace
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'Design System/Button',
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as ComponentMeta<typeof Button>;
+Run `nx graph` to see a diagram of the dependencies of your projects.
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+## Further help
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  type: 'primary',
-  label: 'Button',
-};
+Visit the [Nx Documentation](https://nx.dev) to learn more.
 
-export const Default = Template.bind({});
-Default.args = {
-  type: 'default',
-  label: 'Default',
-};
 
-export const Children = Template.bind({});
-Children.args = {
-  children: <div>Children</div>,
-};
 
-export const Sizes: ComponentStory<typeof Button> = (args) => (
-  <>
-    <Primary {...args} size="large">
-      Large
-    </Primary>
-    <Primary {...args} size="middle">
-      Middle
-    </Primary>
-    <Primary {...args} size="small" label="Small" />
-  </>
-);
+## ☁ Nx Cloud
 
-export const AllButtonTypes: ComponentStory<typeof Button> = (args) => (
-  <>
-    <Button type="primary" label="Primary" />
-    <Button type="primary" label="Primary Disabled" disabled />
-    <Button type="dashed" label="Dashed" />
-    <Button type="default" label="Default" />
-    <Button type="ghost" label="Ghost" />
-    <Button type="link" label="Link" />
-    <Button type="text" label="Text" />
-    <Button type="text" label="Text disabled" disabled />
-  </>
-);
+### Distributed Computation Caching & Distributed Task Execution
 
-export const BlockButton: ComponentStory<typeof Button> = (args) => (
-  <>
-    <Button type="primary" label="Primary" block />
-    <Button type="dashed" label="Dashed" block />
-  </>
-);
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
-export const WithIcon: ComponentStory<typeof Button> = (args) => (
-  <>
-    <Tooltip title="Find something...">
-      <Button shape="circle" icon={<SearchOutlined />} size="large" />
-    </Tooltip>
-    <Tooltip title="Find something...">
-      <Button
-        type="primary"
-        shape="circle"
-        icon={<SearchOutlined />}
-        size="large"
-        label="With Label"
-      />
-    </Tooltip>
-    <Tooltip title="Search something...">
-      <Button type="primary" shape="circle" icon={<SearchOutlined />} size="large">
-        With Children
-      </Button>
-    </Tooltip>
-    <Button type="primary" icon={<SearchOutlined />}>
-      Search
-    </Button>
-    <Tooltip title="search">
-      <Button type="dashed" shape="circle" icon={<SearchOutlined />} size="large" />
-    </Tooltip>
-    <Button type="dashed" icon={<SearchOutlined />} size="large">
-      Search
-    </Button>
-  </>
-);
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
-```
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
-```js
-// Menambahkan kontrol selection secara global
-export default {
-  title: 'Design System/Button',
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-    // props size harus sudah ada di Interface Button
-    size: {
-      options: ['small', 'medium', 'large'],
-      control: {
-        type: 'select',
-        labels: {
-          small: 'small',
-          middle: 'middle',
-          large: 'large',
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Button>;
-// Perhatikan bahwa jika args tidak di-assign sebagai props, maka control ini tidak
-// akan mempengaruhi component yang bersangkutan
-export const BlockButton: ComponentStory<typeof Button> = (args) => (
-  <>
-    <Button type="primary" label="Primary" block /> // control size tidak akan mengubah button ini
-    <Button {...args} type="dashed" label="Dashed" block /> // tapi akan mengubah button ini
-  </>
-);
-// Kecuali melakukan binding yang akan meng-assign semua props ke component
-export const Primary = Template.bind({});
-Primary.args = {
-  type: 'primary',
-  label: 'Button',
-};
-
-// Menambahkan control "disabled" per component
-export const Controls = Template.bind({});
-Controls.args = {
-  type: 'primary',
-  label: 'Primary',
-  disabled: false, // props disabled harus sudah ada di Interface Button
-};
-```
+Visit [Nx Cloud](https://nx.app/) to learn more.

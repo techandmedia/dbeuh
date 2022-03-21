@@ -1,0 +1,28 @@
+{
+  "root": "apps/next-sample-e2e",
+  "sourceRoot": "apps/next-sample-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/next-sample-e2e/cypress.json",
+        "devServerTarget": "next-sample:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "next-sample:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/next-sample-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["next-sample"]
+}

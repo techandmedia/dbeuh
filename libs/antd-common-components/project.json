@@ -1,0 +1,43 @@
+{
+  "root": "libs/antd-common-components",
+  "sourceRoot": "libs/antd-common-components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/antd-common-components",
+        "tsConfig": "libs/antd-common-components/tsconfig.lib.json",
+        "project": "libs/antd-common-components/package.json",
+        "entryFile": "libs/antd-common-components/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "libs/antd-common-components/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/antd-common-components/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antd-common-components"],
+      "options": {
+        "jestConfig": "libs/antd-common-components/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
