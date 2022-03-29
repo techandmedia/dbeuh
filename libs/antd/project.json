@@ -1,6 +1,6 @@
 {
-  "root": "libs/antd-common-components",
-  "sourceRoot": "libs/antd-common-components/src",
+  "root": "libs/antd",
+  "sourceRoot": "libs/antd/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,16 +8,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/antd-common-components",
-        "tsConfig": "libs/antd-common-components/tsconfig.lib.json",
-        "project": "libs/antd-common-components/package.json",
-        "entryFile": "libs/antd-common-components/src/index.ts",
+        "outputPath": "dist/libs/antd",
+        "tsConfig": "libs/antd/tsconfig.lib.json",
+        "project": "libs/antd/package.json",
+        "entryFile": "libs/antd/src/index.ts",
         "external": ["react/jsx-runtime"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-        "compiler": "swc",
+        "compiler": "babel",
         "assets": [
           {
-            "glob": "libs/antd-common-components/README.md",
+            "glob": "libs/antd/README.md",
             "input": ".",
             "output": "."
           }
@@ -28,14 +28,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/antd-common-components/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/antd/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/antd-common-components"],
+      "outputs": ["coverage/libs/antd"],
       "options": {
-        "jestConfig": "libs/antd-common-components/jest.config.js",
+        "jestConfig": "libs/antd/jest.config.js",
         "passWithNoTests": true
       }
     }

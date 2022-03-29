@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Layout from './layout';
+import Content from './content';
 
-describe('Layout', () => {
+describe('Content', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Layout />);
+    const { baseElement } = render(<Content />);
     expect(baseElement).toBeTruthy();
   });
 });
