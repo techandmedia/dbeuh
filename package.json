@@ -6,6 +6,8 @@
     "start": "nx serve",
     "build": "nx run-many --target=build --all",
     "test": "nx test",
+    "test-all": "nx run-many --target=test --all --onlyChanged --codeCoverage",
+    "test-antd": "nx test antd --onlyChanged --codeCoverage",
     "prepare": "husky install"
   },
   "private": true,
@@ -31,6 +33,7 @@
     "@nrwl/react": "13.9.5",
     "@nrwl/web": "13.9.5",
     "@nrwl/workspace": "13.9.5",
+    "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "12.1.4",
     "@testing-library/react-hooks": "7.0.2",
     "@types/jest": "27.4.1",
