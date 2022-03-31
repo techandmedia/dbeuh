@@ -15,12 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: yarn
-      - run: yarn build
-        with:
-          node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: cd dist/libs/antd
-      - run: npm publish
+      - run: yarn && yarn build
+      - run: cd dist/libs/antd && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
