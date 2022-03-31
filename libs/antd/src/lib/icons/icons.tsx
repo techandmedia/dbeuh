@@ -19,13 +19,15 @@ import {
   LeftOutlined,
   EditOutlined,
   DeleteOutlined,
+  LoginOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 import { CSSProperties } from 'react';
 
 type IconType1 = 'add' | 'back' | 'book' | 'dashboard' | 'download' | 'lock' | 'master';
 type IconType2 = 'multi-user' | 'payment' | 'print' | 'reset' | 'search' | 'solution';
 type IconType3 = 'status-yes' | 'status-no' | 'upload' | 'user' | 'close-product-details';
-type IconType4 = 'create-form' | 'edit-form' | 'delete-form';
+type IconType4 = 'create-form' | 'edit-form' | 'delete-form' | 'login' | 'logout';
 
 export declare type IconType = IconType1 | IconType2 | IconType3 | IconType4;
 
@@ -103,6 +105,12 @@ export function Icons(props: IIconProps) {
 
     case 'delete-form':
       return <DeleteOutlined style={{ ...props.style }} />;
+
+    case 'login':
+      return <LoginOutlined style={{ ...props.style }} />;
+
+    case 'logout':
+      return <LogoutOutlined style={{ ...props.style }} />;
 
     default:
       return null;

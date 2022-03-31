@@ -1,6 +1,5 @@
 import { CSSProperties, useState } from 'react';
 import { Button, ConfigProvider } from 'antd';
-import Link from 'next/link';
 
 // Shared Antd-Components
 import { Breadcrumb, Content, Header, Icons, IMenuItem, Layout, Menu, Sider } from '@dbeuh/antd';
@@ -140,7 +139,7 @@ function NewLayout({ children }: ILayout) {
     {
       key: 'logout',
       component: (
-        <Button type="text" onClick={() => console.log('logout')}>
+        <Button type="text" onClick={() => console.log('logout')} icon={<Icons type="logout" />}>
           Logout
         </Button>
       ),
@@ -176,8 +175,8 @@ function NewLayout({ children }: ILayout) {
             menus={menus}
             theme="light"
             mode="inline"
-            // defaultSelectedKeys={['1']}
-            // defaultOpenKeys={['sub1']}
+            defaultSelectedKeys={['dua']}
+            defaultOpenKeys={['enam-a21']}
             style={{ height: '100%', borderRight: 0 }}
           />
         </Sider>

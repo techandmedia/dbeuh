@@ -6,7 +6,7 @@ const { SubMenu } = Menu;
 
 export interface IMenuItem extends MenuItemProps {
   key: string;
-  iconType?: IconType;
+  icontype?: IconType;
   style?: CSSProperties;
   component?: React.ReactNode;
   submenuicon?: IconType;
@@ -63,7 +63,7 @@ function MenuItem(props: IMenuItem) {
     <Menu.Item
       {...props}
       style={{ ...props.style, textTransform: 'capitalize' }}
-      icon={props.iconType ? <Icons type={props.iconType} /> : null}
+      icon={props.icontype ? <Icons type={props.icontype} /> : null}
     >
       {props.component}
     </Menu.Item>
