@@ -1,4 +1,7 @@
 {
-  "name": "@dbeuh/antd",
-  "version": "0.0.1"
+  "name": "@wsh4and/antd",
+  "version": "0.0.1",
+  "publishConfig": {
+    "@wsh4and:registry": "https://registry.npmjs.org/"
+  }
 }
