@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function MainLayout(props: LayoutProps) {
   return (
     <Layout>
-      <Sider breakpoint="lg" />
+      {/* <Sider breakpoint="lg" />
       <Layout>
         <Header style={{ padding: 0, background: '#fff' }} />
         <Content style={{ margin: '24px 16px 0' }}>
@@ -18,7 +18,7 @@ export default function MainLayout(props: LayoutProps) {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-      </Layout>
+      </Layout> */}
     </Layout>
   );
 }

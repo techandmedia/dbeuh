@@ -73,6 +73,7 @@ const treeData = [
 const treeSelectProps = {
   ...inputProps,
   treeCheckable: true,
+  // Type 'string' is not assignable to type 'number | "responsive"'.
   // maxTagCount: 'responsive',
   treeData,
 };

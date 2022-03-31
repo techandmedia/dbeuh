@@ -11,8 +11,6 @@ import 'antd/dist/antd.variable.min.css';
 
 // Local Components
 import { Layout } from '../components/layout';
-import { Icons, IMenu } from '@dbeuh/antd';
-import Link from 'next/link';
 
 export interface IColorTheme {
   primaryColor: string;
