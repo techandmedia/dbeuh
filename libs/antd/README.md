@@ -1,7 +1,7 @@
-# antd
+# UI Template based on Ant Design
 
-This library was generated with [Nx](https://nx.dev).
+version: 0.0.6
 
-## Running unit tests
-
-Run `nx test antd` to execute the unit tests via [Jest](https://jestjs.io).
+- add sider - testing collapsible
+- add testing for sider
+- add testing for menu

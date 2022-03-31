@@ -9,7 +9,7 @@ export interface INavLink {
   title: string;
   iconType: IconType;
   iconStyle?: CSSProperties;
-  collapsed: boolean;
+  collapsed?: boolean;
 }
 
 export function NavLink(props: INavLink) {
