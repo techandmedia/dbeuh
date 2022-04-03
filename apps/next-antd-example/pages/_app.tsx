@@ -8,6 +8,7 @@ import { ConfigProvider } from 'antd';
 // import 'antd/dist/antd.min.css';
 // If you want to customize color theme
 import 'antd/dist/antd.variable.min.css';
+import '../styling/custom-antd.css';
 
 // Local Components
 import { Layout } from '../components/layout';
@@ -18,28 +19,28 @@ export interface IColorTheme {
   warningColor: string;
   successColor: string;
   infoColor: string;
+  customColor1?: string;
 }
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const [color, setColor] = useState<IColorTheme>({
-    primaryColor: '#327136',
+    primaryColor: '#1890ff',
     errorColor: '#ff4d4f',
     warningColor: '#faad14',
     successColor: '#52c41a',
     infoColor: '#1890ff',
-    // Default Ant Design         //  Also able to change through CSS file, but less 'real-time'
-    // primaryColor: '#1890ff', // 'var(--ant-primary-color)'
-    // errorColor: '#ff4d4f',
-    // warningColor: '#faad14',
-    // successColor: '#52c41a',
-    // infoColor: '#1890ff',
   });
   const customColor: IColorTheme = {
-    primaryColor: '#327136',
+    // default-color Ant Design
+    // Also able to change through CSS file, but less 'real-time'
+    // example var > 'var(--ant-primary-color)'
+    primaryColor: '#1890ff',
     errorColor: '#ff4d4f',
     warningColor: '#faad14',
     successColor: '#52c41a',
     infoColor: '#1890ff',
+    // custom-color
+    customColor1: '#327136',
   };
 
   function onColorChange(nextColor) {
