@@ -1,5 +1,5 @@
 import { CSSProperties, useState } from 'react';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Typography } from 'antd';
 
 // Shared Antd-Components
 import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@dbeuh/antd';
@@ -37,31 +37,43 @@ function NewLayout({ children }: ILayout) {
     setCollapsed(col);
   }
 
+  const menuStyle: CSSProperties = {
+    backgroundColor: '#fff',
+    borderTopRightRadius: '20px',
+    borderBottomRightRadius: '20px',
+  };
+
   return (
     <Layout>
       {/* <Header> */}
-      <Menu
+      {/* <Menu
         menus={menuHeader}
         theme="light"
         mode="horizontal"
         defaultSelectedKeys={['dua']}
         style={{ marginBottom: 5 }}
-      />
+      /> */}
       {/* </Header> */}
       {/* style={{ marginBottom: 300 }} */}
       <Layout>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Sider collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
+          {/* Put logo here */}
+          <h3>H3 biasa</h3>
+          <Typography.Title level={3}>LOGO 3</Typography.Title>
+          <div className="logo">
+            <Typography.Title level={4}>LOGO</Typography.Title>
+          </div>
           <Menu
             menus={menuSider}
-            theme="light"
+            // theme="light"
             mode="inline"
             defaultSelectedKeys={['dua']}
             defaultOpenKeys={['enam-a21']}
-            style={{ height: '100%', borderRight: 0 }}
+            style={{ ...menuStyle, height: '100%' }}
           />
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           <Content
             style={{
               padding: 24,

@@ -73,11 +73,9 @@ function MenuItem(props: IMenuItem) {
 function SubMenus(props: ISubMenu) {
   return (
     <SubMenu {...props} title={props.component} icon={<Icons type={props.submenuicon} />}>
-      <>
-        {props.submenus.map((m: IMenuItem) => (
-          <MenuItem {...m} />
-        ))}
-      </>
+      {props.submenus.map((m: IMenuItem) => (
+        <MenuItem {...m} />
+      ))}
     </SubMenu>
   );
 }
@@ -85,15 +83,13 @@ function SubMenus(props: ISubMenu) {
 function GroupMenus(props: IGroupMenus) {
   return (
     <SubMenu {...props} title={props.component} icon={<Icons type={props.submenuicon} />}>
-      <>
-        {props.groupmenus.map(g => (
-          <Menu.ItemGroup key={g.key} title={g.grouptitle}>
-            {g.menus.map((m: IMenuItem) => (
-              <MenuItem {...m} />
-            ))}
-          </Menu.ItemGroup>
-        ))}
-      </>
+      {props.groupmenus.map(g => (
+        <Menu.ItemGroup key={g.key} title={g.grouptitle}>
+          {g.menus.map((m: IMenuItem) => (
+            <MenuItem {...m} />
+          ))}
+        </Menu.ItemGroup>
+      ))}
     </SubMenu>
   );
 }

@@ -142,6 +142,7 @@ const FormSizeDemo = ({ color, customColor, onColorChange }: IDemoColor) => {
               customColor.primaryColor,
               customColor.successColor,
               customColor.errorColor,
+              customColor.customColor1,
             ]}
             color={color.primaryColor}
             onChange={({ hex }) => {
