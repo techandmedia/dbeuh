@@ -8,3 +8,4 @@ export * from './lib/content/content';
 export * from './lib/header/header';
 export * from './lib/sider/sider';
 export * from './lib/layout/layout';
+export * from './lib/next-link/next-link';
