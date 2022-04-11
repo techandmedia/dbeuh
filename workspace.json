@@ -2,12 +2,6 @@
   "version": 2,
   "projects": {
     "antd": "libs/antd",
-    "color-editor": "apps/color-editor",
-    "color-editor-e2e": "apps/color-editor-e2e",
-    "demo": "apps/demo",
-    "demo-e2e": "apps/demo-e2e",
-    "next-antd-example": "apps/next-antd-example",
-    "next-sample": "apps/next-sample",
-    "next-sample-e2e": "apps/next-sample-e2e"
+    "next-antd-example": "apps/next-antd-example"
   }
 }

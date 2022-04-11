@@ -1,6 +1,8 @@
 import { CSSProperties } from 'react';
 import { Menu, MenuItemProps, MenuProps } from 'antd';
 import { Icons, IconType } from '../icons/icons';
+import { INextLink } from '../nextlink/next-link';
+import { NavLink } from '../nav-link/nav-link';
 
 const { SubMenu } = Menu;
 
