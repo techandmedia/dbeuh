@@ -9,7 +9,7 @@ export function headerMenus() {
       component: <NavLink href="/" title="home" iconType="book" />,
     },
     {
-      key: 'satu',
+      key: 'hidden',
       component: <NavLink href="/satu" title="satu" iconType="book" />,
     },
     {
@@ -81,7 +81,7 @@ export function siderMenus(collapsed: boolean) {
       component: <NavLink href="/" title="home" iconType="book" collapsed={collapsed} />,
     },
     {
-      key: 'satu',
+      key: 'hidden',
       component: <NavLink href="/satu" title="satu" iconType="book" collapsed={collapsed} />,
     },
     {
@@ -98,7 +98,7 @@ export function siderMenus(collapsed: boolean) {
       component: <span>Empat A</span>,
       submenus: [
         {
-          key: 'empat-a1',
+          key: 'hiddena1',
           component: <NavLink href="/dua" title="empat-a1" iconType="book" collapsed={collapsed} />,
         },
         {
@@ -112,7 +112,7 @@ export function siderMenus(collapsed: boolean) {
       component: <span>Lima A</span>,
       groupmenus: [
         {
-          key: 'lima-a1',
+          key: 'hidden5',
           grouptitle: 'lima-a1',
           menus: [
             {
@@ -134,7 +134,7 @@ export function siderMenus(collapsed: boolean) {
           grouptitle: 'lima-a21',
           menus: [
             {
-              key: 'lima-a121',
+              key: 'hidden4',
               component: (
                 <NavLink href="/dua" title="lima-a121" iconType="book" collapsed={collapsed} />
               ),
