@@ -108,7 +108,7 @@ export function siderMenus(collapsed: boolean) {
       ],
     },
     {
-      key: 'lima',
+      key: 'hidden-lima',
       component: <span>Lima A</span>,
       groupmenus: [
         {
