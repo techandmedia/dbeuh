@@ -7,6 +7,7 @@
     "build": "nx run-many --target=build --all",
     "test": "nx test",
     "test-all": "nx run-many --target=test --all --onlyChanged --codeCoverage",
+    "next-antd": "nx serve next-antd-example",
     "test-antd": "nx test antd --onlyChanged --codeCoverage",
     "prepare": "husky install"
   },

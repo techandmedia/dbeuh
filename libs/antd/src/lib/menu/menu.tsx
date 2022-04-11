@@ -22,6 +22,7 @@ export interface IGroupMenu {
 
 export interface IGroupMenus {
   key: string | undefined;
+  eventKey?: string;
   style?: CSSProperties;
   component?: React.ReactNode;
   submenuicon?: IconType;
@@ -30,6 +31,7 @@ export interface IGroupMenus {
 
 export interface ISubMenu {
   key: string;
+  eventKey?: string;
   style?: CSSProperties;
   component?: React.ReactNode;
   submenuicon: IconType;
@@ -59,6 +61,8 @@ function NewMenu(props: IMainMenu) {
 }
 
 function MenuItem(props: IMenuItem) {
+  if (props.eventKey?.includes('hidden')) return null;
+
   return (
     <Menu.Item
       {...props}
@@ -71,6 +75,8 @@ function MenuItem(props: IMenuItem) {
 }
 
 function SubMenus(props: ISubMenu) {
+  if (props.eventKey?.includes('hidden')) return null;
+
   return (
     <SubMenu {...props} title={props.component} icon={<Icons type={props.submenuicon} />}>
       {props.submenus.map((m: IMenuItem) => (
@@ -81,15 +87,21 @@ function SubMenus(props: ISubMenu) {
 }
 
 function GroupMenus(props: IGroupMenus) {
+  if (props.eventKey?.includes('hidden')) return null;
+
   return (
     <SubMenu {...props} title={props.component} icon={<Icons type={props.submenuicon} />}>
-      {props.groupmenus.map(g => (
-        <Menu.ItemGroup key={g.key} title={g.grouptitle}>
-          {g.menus.map((m: IMenuItem) => (
-            <MenuItem {...m} />
-          ))}
-        </Menu.ItemGroup>
-      ))}
+      {props.groupmenus.map(g => {
+        if (g.key?.includes('hidden')) return null;
+
+        return (
+          <Menu.ItemGroup key={g.key} title={g.grouptitle}>
+            {g.menus.map((m: IMenuItem) => (
+              <MenuItem {...m} />
+            ))}
+          </Menu.ItemGroup>
+        );
+      })}
     </SubMenu>
   );
 }
