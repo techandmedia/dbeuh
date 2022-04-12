@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { INextLink, Nextlink } from './next-link';
+import { INextLink, NextLink } from './next-link';
 
 const testMenu: INextLink = {
   href: 'home',
@@ -7,9 +7,9 @@ const testMenu: INextLink = {
   iconType: 'master',
 };
 
-describe('Nextlink', () => {
+describe('NextLink', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Nextlink {...testMenu} />);
+    const { baseElement } = render(<NextLink {...testMenu} />);
     expect(baseElement).toBeTruthy();
   });
 });
