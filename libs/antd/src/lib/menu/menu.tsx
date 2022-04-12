@@ -79,9 +79,19 @@ function SubMenus(props: ISubMenu) {
 
   return (
     <SubMenu {...props} title={props.component} icon={<Icons type={props.submenuicon} />}>
-      {props.submenus.map((m: IMenuItem) => (
-        <MenuItem {...m} />
-      ))}
+      {props.submenus.map((m: IMenuItem) => {
+        if (m.submenus && m.submenuicon) {
+          return (
+            <SubMenu {...m} title={m.component} icon={<Icons type={m.submenuicon} />}>
+              {m.submenus.map(sn => (
+                <MenuItem {...sn} />
+              ))}
+            </SubMenu>
+          );
+        }
+
+        return <MenuItem {...m} />;
+      })}
     </SubMenu>
   );
 }

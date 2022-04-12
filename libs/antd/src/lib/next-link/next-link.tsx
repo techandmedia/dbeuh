@@ -13,7 +13,7 @@ export interface INextLink {
   submenus?: INextLink[];
 }
 
-export function Nextlink(props: INextLink) {
+export function NextLink(props: INextLink) {
   return (
     <Link href={props.href}>
       <a>
