@@ -1,7 +1,8 @@
 # UI Template based on Ant Design
 
-version: 0.0.6
+version: 0.0.12
 
-- add sider - testing collapsible
-- add testing for sider
-- add testing for menu
+- remap menus with NextLink component
+- add Table
+- add Pagination
+- comment on sample pages on how to use each component
