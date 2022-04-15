@@ -29,6 +29,18 @@ const defaultPublicMenu: INextLink[] = [
         href: '/sample/table',
         title: 'Table',
         iconType: 'master',
+        submenus: [
+          {
+            href: '/sample/table/default',
+            title: 'Default',
+            iconType: 'master',
+          },
+          {
+            href: '/sample/table/table-pagination',
+            title: 'With Pagination',
+            iconType: 'master',
+          },
+        ],
       },
     ],
   },

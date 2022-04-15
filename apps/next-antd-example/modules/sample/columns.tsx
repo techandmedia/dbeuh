@@ -1,9 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Table } from '@dbeuh/antd';
 import { TableColumnsType } from 'antd';
 
-function remapColumns(): TableColumnsType {
+export function remapColumns(): TableColumnsType {
   const columns: TableColumnsType = [
+    {
+      title: 'No',
+      dataIndex: 'key',
+      key: 'key',
+      width: 80,
+      fixed: 'left',
+    },
     {
       title: 'Name',
       dataIndex: 'name',
@@ -88,25 +93,4 @@ function remapColumns(): TableColumnsType {
     },
   ];
   return columns;
-}
-
-const data = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i,
-    name: 'John Brown',
-    age: i + 1,
-    street: 'Lake Park',
-    building: 'C',
-    number: 2035,
-    companyAddress: 'Lake Street 42',
-    companyName: 'SoftLake Co',
-    gender: 'M',
-  });
-}
-
-export default function Page(props) {
-  const columns = remapColumns();
-
-  return <Table columns={columns} dataSource={data} bordered scrolly={400} />;
 }

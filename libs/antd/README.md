@@ -6,3 +6,7 @@ version: 0.0.12
 - add Table
 - add Pagination
 - comment on sample pages on how to use each component
+
+Test Passed
+
+- Table: render data from an API

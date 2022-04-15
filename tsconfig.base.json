@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dbeuh/antd": ["libs/antd/src/index.ts"]
+      "@dbeuh/antd": ["libs/antd/src/index.ts"],
+      "@dbeuh/utils": ["libs/utils2/src/index.ts"],
+      "@wsh4and/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

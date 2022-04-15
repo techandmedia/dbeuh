@@ -8,7 +8,7 @@
     "test": "nx test",
     "test-all": "nx run-many --target=test --all --onlyChanged --codeCoverage",
     "next-antd": "nx serve next-antd-example",
-    "test-antd": "nx test antd --onlyChanged --codeCoverage",
+    "test-antd": "nx test antd --codeCoverage --color --colors --onlyChanged",
     "prepare": "husky install"
   },
   "private": true,
@@ -16,6 +16,7 @@
     "@ant-design/icons": "^4.7.0",
     "@nrwl/next": "13.9.6",
     "antd": "^4.19.5",
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "next": "12.1.4",
     "react": "18.0.0",

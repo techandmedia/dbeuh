@@ -1,5 +1,7 @@
-import { render } from '@testing-library/react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { cleanup, render } from '@testing-library/react';
 import { TableColumnsType } from 'antd';
+import axios from 'axios';
 
 import { Table } from './table';
 function remapColumns(): TableColumnsType {
@@ -90,25 +92,42 @@ function remapColumns(): TableColumnsType {
   return columns;
 }
 
-const data = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i,
-    name: 'John Brown',
-    age: i + 1,
-    street: 'Lake Park',
-    building: 'C',
-    number: 2035,
-    companyAddress: 'Lake Street 42',
-    companyName: 'SoftLake Co',
-    gender: 'M',
-  });
-}
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+beforeAll(() => {
+  cleanup();
+});
 
 describe('Table', () => {
   it('should render successfully', () => {
+    let loading = false;
+    let data: readonly any[] | undefined = [];
+    async function getData(page: number, size: number) {
+      const params = { page: page, size: size };
+      const res = await axios('/api/table', {
+        method: 'POST',
+        data: params,
+      });
+      loading = true;
+      data = res.data.data.tableData;
+    }
+
+    getData(1, 10);
+
     const columns = remapColumns();
-    const { baseElement } = render(<Table columns={columns} dataSource={data} />);
+    const { baseElement } = render(<Table columns={columns} dataSource={data} loading={loading} />);
     expect(baseElement).toBeTruthy();
   });
 });
