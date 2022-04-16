@@ -1,206 +1,82 @@
-import { Icons, IMenuItem } from '@dbeuh/antd';
+/* eslint-disable indent */
 import { Button } from 'antd';
-import { NavLink } from './nav-link';
+import { Icons, IMenuItem, NextLink, remapNextLinkMenu } from '@wsh4and/antd';
 
-export function headerMenus() {
-  const menus: IMenuItem[] = [
+// Local Libraries
+import { defaultPrivateMenu, defaultPublicMenu } from './menu/default-menu';
+
+export function headerMenus(user: any, signOut: () => void) {
+  function logout() {
+    signOut();
+  }
+
+  const publicAuth: IMenuItem[] = [
     {
-      key: 'home',
-      component: <NavLink href="/" title="home" iconType="book" />,
-    },
-    {
-      key: 'hidden',
-      component: <NavLink href="/satu" title="satu" iconType="book" />,
-    },
-    {
-      key: 'dua',
-      component: <NavLink href="/dua" title="dua" iconType="book" />,
-    },
-    {
-      key: 'tiga',
-      component: <NavLink href="/tiga" title="tiga" iconType="book" />,
-    },
-    {
-      key: 'empat',
-      submenuicon: 'download',
-      component: <span>Empat A</span>,
-      submenus: [
-        {
-          key: 'empat-a1',
-          component: <NavLink href="/dua" title="empat-a1" iconType="book" />,
-        },
-        {
-          key: 'empat-a2',
-          component: <NavLink href="/dua" title="empat-a2" iconType="book" />,
-        },
-      ],
-    },
-    {
-      key: 'lima',
-      component: <span>Lima A</span>,
-      groupmenus: [
-        {
-          key: 'lima-a1',
-          grouptitle: 'lima-a1',
-          menus: [
+      key: 'profile',
+      submenuicon: 'user',
+      component: <span>Profile - {user?.username || 'Guest'}</span>,
+      submenus: user
+        ? [
             {
-              key: 'lima-a11',
-              component: <NavLink href="/dua" title="lima-a11" iconType="book" />,
+              key: 'logout',
+              component: (
+                <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
+                  Logout
+                </Button>
+              ),
             },
+          ]
+        : [
             {
-              key: 'lima-a12',
-              component: <NavLink href="/dua" title="lima-a12" iconType="book" />,
+              key: 'auth',
+              component: <NextLink href="/auth" title="auth" iconType="book" />,
             },
           ],
-        },
-        {
-          key: 'lima-a21',
-          grouptitle: 'lima-a21',
-          menus: [
-            {
-              key: 'lima-a121',
-              component: <NavLink href="/dua" title="lima-a121" iconType="book" />,
-            },
-            {
-              key: 'lima-a122',
-              component: <NavLink href="/3" title="lima-a122" iconType="dashboard" />,
-            },
-          ],
-        },
-      ],
     },
   ];
 
-  return menus;
+  const menus: IMenuItem[] = user
+    ? remapNextLinkMenu(defaultPublicMenu, false)
+    : remapNextLinkMenu(defaultPublicMenu, false);
+
+  const newMenus: IMenuItem[] = [...menus, ...publicAuth];
+  return newMenus;
 }
 
-export function siderMenus(collapsed: boolean) {
-  const menus: IMenuItem[] = [
+export function siderMenus(user, signOut: () => void, collapsed: boolean) {
+  function logout() {
+    signOut();
+  }
+
+  const privateAuth: IMenuItem[] = [
     {
-      key: 'home',
-      component: <NavLink href="/" title="home" iconType="book" collapsed={collapsed} />,
-    },
-    {
-      key: 'hidden',
-      component: <NavLink href="/satu" title="satu" iconType="book" collapsed={collapsed} />,
-    },
-    {
-      key: 'dua',
-      component: <NavLink href="/dua" title="dua" iconType="book" collapsed={collapsed} />,
-    },
-    {
-      key: 'tiga',
-      component: <NavLink href="/tiga" title="tiga" iconType="book" collapsed={collapsed} />,
-    },
-    {
-      key: 'empat',
-      submenuicon: 'download',
-      component: <span>Empat A</span>,
-      submenus: [
-        {
-          key: 'hiddena1',
-          component: <NavLink href="/dua" title="empat-a1" iconType="book" collapsed={collapsed} />,
-        },
-        {
-          key: 'empat-a2',
-          component: <NavLink href="/dua" title="empat-a2" iconType="book" collapsed={collapsed} />,
-        },
-      ],
-    },
-    {
-      key: 'hidden-lima',
-      component: <span>Lima A</span>,
-      groupmenus: [
-        {
-          key: 'hidden5',
-          grouptitle: 'lima-a1',
-          menus: [
+      key: 'profile',
+      submenuicon: 'user',
+      component: <span>Profile - {user?.username || 'Guest'}</span>,
+      submenus: user
+        ? [
             {
-              key: 'lima-a11',
+              key: 'logout',
               component: (
-                <NavLink href="/dua" title="lima-a11" iconType="book" collapsed={collapsed} />
+                <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
+                  Logout
+                </Button>
               ),
             },
+          ]
+        : [
             {
-              key: 'lima-a12',
-              component: (
-                <NavLink href="/dua" title="lima-a12" iconType="book" collapsed={collapsed} />
-              ),
+              key: 'auth',
+              component: <NextLink href="/auth" title="auth" iconType="book" />,
             },
           ],
-        },
-        {
-          key: 'lima-a21',
-          grouptitle: 'lima-a21',
-          menus: [
-            {
-              key: 'hidden4',
-              component: (
-                <NavLink href="/dua" title="lima-a121" iconType="book" collapsed={collapsed} />
-              ),
-            },
-            {
-              key: 'lima-a122',
-              component: (
-                <NavLink href="/3" title="lima-a122" iconType="dashboard" collapsed={collapsed} />
-              ),
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'enam',
-      submenuicon: 'create-form',
-      component: <span>Enam A</span>,
-      groupmenus: [
-        {
-          key: 'enam-a1',
-          grouptitle: 'enam-a1',
-          menus: [
-            {
-              key: 'enam-a11',
-              component: (
-                <NavLink href="/3" title="enam-a11" iconType="dashboard" collapsed={collapsed} />
-              ),
-            },
-            {
-              key: 'enam-a12',
-              component: (
-                <NavLink href="/3" title="enam-a12" iconType="dashboard" collapsed={collapsed} />
-              ),
-            },
-          ],
-        },
-        {
-          key: 'enam-a21',
-          grouptitle: 'enam-a21',
-          menus: [
-            {
-              key: 'enam-a121',
-              component: (
-                <NavLink href="/3" title="enam-a121" iconType="dashboard" collapsed={collapsed} />
-              ),
-            },
-            {
-              key: 'enam-a122',
-              component: (
-                <NavLink href="/3" title="enam-a122" iconType="dashboard" collapsed={collapsed} />
-              ),
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'logout',
-      component: (
-        <Button type="text" onClick={() => console.log('logout')} icon={<Icons type="logout" />}>
-          Logout
-        </Button>
-      ),
     },
   ];
 
-  return menus;
+  const menus: IMenuItem[] = user
+    ? remapNextLinkMenu(defaultPrivateMenu, collapsed)
+    : remapNextLinkMenu(defaultPrivateMenu, collapsed);
+
+  const newMenus: IMenuItem[] = [...menus, ...privateAuth];
+  return newMenus;
 }

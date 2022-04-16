@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "antd": "libs/antd",
-    "next-antd-example": "apps/next-antd-example"
+    "next-antd-example": "apps/next-antd-example",
+    "utils": "libs/utils"
   }
 }

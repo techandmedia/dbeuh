@@ -13,3 +13,31 @@ subMenuIcon;
 // to a lowercase
 submenuicon;
 ```
+
+## TEST-ERROR
+
+TypeError: window.matchMedia is not a function
+
+https://thewebdev.info/2022/02/24/how-to-fix-the-typeerror-window-matchmedia-is-not-a-function-error-in-jest-tests/
+
+Add this for each test
+
+```js
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+beforeAll(() => {
+  cleanup();
+});
+```

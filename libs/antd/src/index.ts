@@ -1,3 +1,4 @@
+export * from './lib/table/table';
 export * from './lib/sider/sider';
 export * from './lib/footer/footer';
 export * from './lib/nav-link/nav-link';

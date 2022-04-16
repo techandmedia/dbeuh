@@ -2,7 +2,7 @@ import { CSSProperties, useState } from 'react';
 import { ConfigProvider, Typography } from 'antd';
 
 // Shared Antd-Components
-import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@dbeuh/antd';
+import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@wsh4and/antd';
 import { headerMenus, siderMenus } from './menu';
 
 export interface ILayout {
@@ -18,8 +18,8 @@ function NewLayout({ children }: ILayout) {
     infoColor: '#1890ff',
   });
   const [collapsed, setCollapsed] = useState(false);
-  const menuHeader = headerMenus();
-  const menuSider = siderMenus(collapsed);
+  const menuHeader = headerMenus('user', signOut);
+  const menuSider = siderMenus('user', signOut, collapsed);
 
   function onColorChange(nextColor: CSSProperties) {
     const mergedNextColor = {
@@ -30,6 +30,10 @@ function NewLayout({ children }: ILayout) {
     ConfigProvider.config({
       theme: mergedNextColor,
     });
+  }
+
+  function signOut() {
+    console.log('col');
   }
 
   function onCollapse(col) {
@@ -46,13 +50,13 @@ function NewLayout({ children }: ILayout) {
   return (
     <Layout>
       {/* <Header> */}
-      {/* <Menu
+      <Menu
         menus={menuHeader}
         theme="light"
         mode="horizontal"
         defaultSelectedKeys={['dua']}
         style={{ marginBottom: 5 }}
-      /> */}
+      />
       {/* </Header> */}
       {/* style={{ marginBottom: 300 }} */}
       <Layout>

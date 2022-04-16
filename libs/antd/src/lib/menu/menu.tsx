@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 import { Menu, MenuItemProps, MenuProps } from 'antd';
 import { Icons, IconType } from '../icons/icons';
+import { INextLink, NextLink } from '../next-link/next-link';
 
 const { SubMenu } = Menu;
 
@@ -116,4 +117,45 @@ function GroupMenus(props: IGroupMenus) {
   );
 }
 
-export { NewMenu as Menu };
+function remapNextLinkMenu(menus: INextLink[], collapsed: boolean): IMenuItem[] {
+  const remapMenus: IMenuItem[] = menus.map(m => {
+    if (m.submenus) {
+      const nestedMenus = m.submenus.map(s => {
+        if (s.submenus) {
+          const superNestedMenus = s.submenus.map(sn => ({
+            key: sn.href,
+            component: <NextLink {...sn} collapsed={collapsed} />,
+          }));
+
+          return {
+            key: s.href,
+            submenuicon: s.iconType,
+            component: <span>{s.title}</span>,
+            submenus: superNestedMenus,
+          };
+        }
+
+        return {
+          key: s.href,
+          component: <NextLink {...s} collapsed={collapsed} />,
+        };
+      });
+
+      return {
+        key: m.href,
+        submenuicon: m.iconType,
+        component: <span>{m.title}</span>,
+        submenus: nestedMenus,
+      };
+    }
+
+    return {
+      key: m.href,
+      component: <NextLink {...m} collapsed={collapsed} />,
+    };
+  });
+
+  return remapMenus;
+}
+
+export { NewMenu as Menu, remapNextLinkMenu };

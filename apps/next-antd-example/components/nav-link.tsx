@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { CSSProperties } from 'react';
 import Link from 'next/link';
-import { Icons, IconType } from '@dbeuh/antd';
+import { Icons, IconType } from '@wsh4and/antd';
 
 /* eslint-disable-next-line */
 export interface INavLink {
