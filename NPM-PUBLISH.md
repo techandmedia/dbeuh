@@ -55,3 +55,22 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 ```
+
+## ERROR
+
+npm ERR! 402 Payment Required
+https://stackoverflow.com/questions/41981686/getting-error-402-while-publishing-package-using-npm
+
+```bash
+# For first time publishing a package
+npm publish --access=public
+```
+
+```json
+// Or add this to package.json
+{
+  "publishConfig": {
+    "access": "public"
+  }
+}
+```
