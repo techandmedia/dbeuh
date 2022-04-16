@@ -16,6 +16,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'SKIP SCRIPTS')"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -23,9 +24,13 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: yarn && yarn build
-      - run: cd dist/libs/antd && npm publish
+      - name: publish-antd
+        if: "contains(github.event.head_commit.message, 'publish-antd')"
+        run: cd dist/libs/antd && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: cd dist/libs/utils && npm publish
+      - name: publish-utils
+        if: "contains(github.event.head_commit.message, 'publish-utils')"
+        run: cd dist/libs/utils && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
