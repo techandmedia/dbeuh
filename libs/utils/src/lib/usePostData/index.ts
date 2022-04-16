@@ -3,13 +3,6 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
-interface IDataType {
-  code: number;
-  data: any;
-  message: string;
-  title: 'SUCCESS' | 'ERROR';
-}
-
 export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
   const [data, setData] = useState<any | null>(null);
 
@@ -27,7 +20,7 @@ export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
     }
   }
 
-  function post(OPTIONS: AxiosRequestConfig) {
+  function post(OPTIONS: AxiosRequestConfig): void {
     setData(null);
     postData(OPTIONS);
   }

@@ -2,7 +2,7 @@ import { CSSProperties, useState } from 'react';
 import { ConfigProvider, Typography } from 'antd';
 
 // Shared Antd-Components
-import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@dbeuh/antd';
+import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@wsh4and/antd';
 import { headerMenus, siderMenus } from './menu';
 
 export interface ILayout {

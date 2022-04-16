@@ -1,7 +1,6 @@
-# utils
+# A collection of simple utilities
 
-This library was generated with [Nx](https://nx.dev).
+version: 0.0.1
 
-## Running unit tests
-
-Run `nx test utils` to execute the unit tests via [Jest](https://jestjs.io).
+- add row number function
+- simple fetcher with axios

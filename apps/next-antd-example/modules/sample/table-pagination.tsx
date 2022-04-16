@@ -4,8 +4,8 @@ import { PaginationProps } from 'antd';
 import { AxiosRequestConfig } from 'axios';
 
 // Shared Libraries
-import { Table } from '@dbeuh/antd';
-import { usePostData } from '@wsh4and/utils';
+import { Table } from '@wsh4and/antd';
+import { usePostData, validatePagination } from '@wsh4and/utils';
 
 // Local Libraries
 import { remapColumns } from './columns';
@@ -38,12 +38,13 @@ export default function Page(props) {
   };
 
   useEffect(() => {
-    console.log(dataTable);
+    // console.log(dataTable);
     if (dataTable?.code) {
       setTimeout(() => {
         setLoading(false);
-        setData(dataTable.data.tableData);
-        setTotal(dataTable.data.totalContent);
+        const newData = validatePagination(dataTable);
+        setData(newData);
+        setTotal(dataTable.pagination.totalContent);
       }, 200);
     } else {
       setLoading(true);
@@ -52,7 +53,7 @@ export default function Page(props) {
 
   return (
     <>
-      {/* <DescriptionTablePagination /> */}
+      <DescriptionTablePagination />
       <Table
         columns={columns}
         dataSource={data}

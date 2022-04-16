@@ -38,6 +38,12 @@ export default function DescriptionTablePagination(props) {
         <Divider style={{ margin: 10 }} />
         Custom column function like filter or sort will <strong>ONLY</strong> work for the page that
         displaying the data (current page), since we are getting the data per page (pagination).
+        <Divider style={{ margin: 10 }} />
+        Table data usually do not have row number (1,2,3, and so on).
+        <br />
+        Adding a function to add row number when user change pages and validate the number so it
+        wont be the same in each page (without the function, if the page size is 10, the row number
+        will be 1-10 in each page)
       </Descriptions.Item>
     </Descriptions>
   );

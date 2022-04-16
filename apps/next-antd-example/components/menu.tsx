@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { Button } from 'antd';
-import { Icons, IMenuItem, NextLink, remapNextLinkMenu } from '@dbeuh/antd';
+import { Icons, IMenuItem, NextLink, remapNextLinkMenu } from '@wsh4and/antd';
 
 // Local Libraries
 import { defaultPrivateMenu, defaultPublicMenu } from './menu/default-menu';

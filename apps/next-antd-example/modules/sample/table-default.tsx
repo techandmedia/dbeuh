@@ -4,10 +4,11 @@ import { Descriptions, Divider, Typography } from 'antd';
 import axios from 'axios';
 
 // Shared Libraries
-import { Table } from '@dbeuh/antd';
+import { Table } from '@wsh4and/antd';
 
 // Local Libraries
 import { remapColumns } from './columns';
+import { validatePagination } from '@wsh4and/utils';
 
 const { Text, Link } = Typography;
 
@@ -29,7 +30,9 @@ export default function Page(props) {
         method: 'POST',
       });
       setLoading(false);
-      setData(res.data.data.tableData);
+      const newData = validatePagination(res.data);
+      // console.log(newData);
+      setData(newData);
     }
   }, []);
 

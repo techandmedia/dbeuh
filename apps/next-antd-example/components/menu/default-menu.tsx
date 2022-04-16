@@ -1,4 +1,4 @@
-import { INextLink } from '@dbeuh/antd';
+import { INextLink } from '@wsh4and/antd';
 
 const defaultHomeMenu: INextLink[] = [
   {
