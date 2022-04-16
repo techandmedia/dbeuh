@@ -1,6 +1,6 @@
 {
   "name": "@wsh4and/antd",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "publishConfig": {
     "access": "public",
     "@wsh4and:registry": "https://registry.npmjs.org/"

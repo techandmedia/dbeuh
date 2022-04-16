@@ -60,7 +60,7 @@ function NewLayout({ children }: ILayout) {
       {/* </Header> */}
       {/* style={{ marginBottom: 300 }} */}
       <Layout>
-        <Sider collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
+        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
           {/* Put logo here */}
           <h3>H3 biasa</h3>
           <Typography.Title level={3}>LOGO 3</Typography.Title>
@@ -76,13 +76,13 @@ function NewLayout({ children }: ILayout) {
             style={{ ...menuStyle, height: '100%' }}
           />
         </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
+        <Layout style={{ padding: '0 24px 24px', minHeight: '95vh' }}>
           {/* <Breadcrumb /> */}
           <Content
             style={{
               padding: 24,
               margin: 0,
-              minHeight: 280,
+              minHeight: '100%',
               backgroundColor: '#fff',
               borderRadius: 4,
             }}
