@@ -74,3 +74,9 @@ npm publish --access=public
   }
 }
 ```
+
+When publishing a package to npm, make sure to add comment to make sure the correct package is published. For example, to publish a antd package, add "publish-antd" in the comment.
+List of relevant comment. Add all of them if you make changes for all packages at the same time and want to publish them together
+
+- publish-antd
+- publish-utils
