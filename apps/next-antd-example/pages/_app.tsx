@@ -12,6 +12,7 @@ import '../styling/custom-antd.css';
 
 // Local Components
 import { Layout } from '../components/layout';
+import { useRouter } from 'next/router';
 
 export interface IColorTheme {
   primaryColor: string;
@@ -23,6 +24,7 @@ export interface IColorTheme {
 }
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const [color, setColor] = useState<IColorTheme>({
     primaryColor: '#1890ff',
     errorColor: '#ff4d4f',
@@ -55,7 +57,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <Layout>
+    <Layout router={router}>
       <Head>
         <title>Welcome to next-antd-example!</title>
       </Head>
@@ -65,6 +67,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
           color={color}
           customColor={customColor}
           onColorChange={onColorChange}
+          router={router}
         />
       </main>
     </Layout>

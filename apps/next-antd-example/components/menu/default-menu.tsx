@@ -42,6 +42,23 @@ const defaultPublicMenu: INextLink[] = [
           },
         ],
       },
+      {
+        href: '/sample/form',
+        title: 'Form',
+        iconType: 'master',
+        submenus: [
+          {
+            href: '/sample/form/default',
+            title: 'Default',
+            iconType: 'master',
+          },
+          {
+            href: '/sample/form/tab',
+            title: 'With Tab',
+            iconType: 'master',
+          },
+        ],
+      },
     ],
   },
 ];

@@ -1,4 +1,4 @@
-import Page from '../../../modules/sample/table/table-default';
+import Page from '../../../modules/sample/form/form-tab';
 
 export default function Render(props) {
   return <Page {...props} />;
