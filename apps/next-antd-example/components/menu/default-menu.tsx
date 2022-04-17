@@ -52,6 +52,11 @@ const defaultPublicMenu: INextLink[] = [
             title: 'Default',
             iconType: 'master',
           },
+          {
+            href: '/sample/form/tab',
+            title: 'With Tab',
+            iconType: 'master',
+          },
         ],
       },
     ],

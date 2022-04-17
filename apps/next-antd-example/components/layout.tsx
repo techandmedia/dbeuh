@@ -1,4 +1,5 @@
-import { CSSProperties, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CSSProperties, useState, useEffect } from 'react';
 import { ConfigProvider, Typography } from 'antd';
 
 // Shared Antd-Components
@@ -7,9 +8,10 @@ import { headerMenus, siderMenus } from './menu';
 
 export interface ILayout {
   children: React.ReactNode;
+  router: any;
 }
 
-function NewLayout({ children }: ILayout) {
+function NewLayout({ children, router }: ILayout) {
   const [color, setColor] = useState({
     primaryColor: '#1890ff',
     errorColor: '#ff4d4f',
@@ -20,6 +22,7 @@ function NewLayout({ children }: ILayout) {
   const [collapsed, setCollapsed] = useState(false);
   const menuHeader = headerMenus('user', signOut);
   const menuSider = siderMenus('user', signOut, collapsed);
+  const [isSider, setSider] = useState(true);
 
   function onColorChange(nextColor: CSSProperties) {
     const mergedNextColor = {
@@ -47,6 +50,15 @@ function NewLayout({ children }: ILayout) {
     borderBottomRightRadius: '20px',
   };
 
+  useEffect(() => {
+    // console.log(router);
+    if (router.pathname === '/sample/form/tab') {
+      setSider(false);
+    } else {
+      setSider(true);
+    }
+  }, [router]);
+
   return (
     <Layout>
       {/* <Header> */}
@@ -60,27 +72,30 @@ function NewLayout({ children }: ILayout) {
       {/* </Header> */}
       {/* style={{ marginBottom: 300 }} */}
       <Layout>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
-          {/* Put logo here */}
-          <h3>H3 biasa</h3>
-          <Typography.Title level={3}>LOGO 3</Typography.Title>
-          <div className="logo">
-            <Typography.Title level={4}>LOGO</Typography.Title>
-          </div>
-          <Menu
-            menus={menuSider}
-            // theme="light"
-            mode="inline"
-            defaultSelectedKeys={['dua']}
-            defaultOpenKeys={['enam-a21']}
-            style={{ ...menuStyle, height: '100%' }}
-          />
-        </Sider>
+        {isSider && (
+          <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
+            {/* Put logo here */}
+            <h3>H3 biasa</h3>
+            <Typography.Title level={3}>LOGO 3</Typography.Title>
+            <div className="logo">
+              <Typography.Title level={4}>LOGO</Typography.Title>
+            </div>
+            <Menu
+              menus={menuSider}
+              // theme="light"
+              mode="inline"
+              defaultSelectedKeys={['dua']}
+              defaultOpenKeys={['enam-a21']}
+              style={{ ...menuStyle, height: '100%' }}
+            />
+          </Sider>
+        )}
+
         <Layout style={{ padding: '0 24px 24px', minHeight: '95vh' }}>
           {/* <Breadcrumb /> */}
           <Content
             style={{
-              padding: 24,
+              padding: isSider ? 24 : '24px 0 0 0',
               margin: 0,
               minHeight: '100%',
               backgroundColor: '#fff',

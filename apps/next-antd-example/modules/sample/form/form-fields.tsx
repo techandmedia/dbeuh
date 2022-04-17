@@ -3,15 +3,25 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 // Shared Libraries
 import { IFormItem } from '@wsh4and/antd';
+import { CSSProperties } from 'react';
 
-export function remapFormItem(): IFormItem[] {
+const inputStyle = {
+  padding: '10px 16px 10px 16px',
+  borderRadius: 4,
+};
+
+export function remapFormItem(label = true, style?: CSSProperties): IFormItem[] {
   const formfields: IFormItem[] = [
     {
       key: 'username',
       name: 'username',
-      label: 'Username',
+      label: label ? 'Username' : null,
       component: (
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Username"
+          style={{ ...inputStyle, ...style }}
+        />
       ),
       rules: [
         {
@@ -23,12 +33,13 @@ export function remapFormItem(): IFormItem[] {
     {
       key: 'password',
       name: 'password',
-      label: 'Password',
+      label: label ? 'Password' : null,
       component: (
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
+          style={{ ...inputStyle, ...style }}
         />
       ),
       rules: [
