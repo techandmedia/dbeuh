@@ -452,7 +452,7 @@ const FormSizeDemo = ({ color, customColor, onColorChange }: IDemoColor) => {
           </Form>
 
           {/* Form - DatePicker */}
-          <Form>
+          {/* <Form>
             <SplitSpace>
               <Form.Item>
                 <DatePicker />
@@ -470,7 +470,7 @@ const FormSizeDemo = ({ color, customColor, onColorChange }: IDemoColor) => {
                 <DatePicker />
               </Form.Item>
             </SplitSpace>
-          </Form>
+          </Form> */}
 
           <SplitSpace>
             <Checkbox>Checkbox</Checkbox>
@@ -492,10 +492,10 @@ const FormSizeDemo = ({ color, customColor, onColorChange }: IDemoColor) => {
             <Switch defaultChecked />
           </SplitSpace>
 
-          <SplitSpace>
+          {/* <SplitSpace>
             <DatePicker.RangePicker />
             <TimePicker.RangePicker />
-          </SplitSpace>
+          </SplitSpace> */}
 
           <Row gutter={16}>
             <Col span={8}>

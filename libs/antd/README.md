@@ -2,6 +2,12 @@
 
 https://github.com/techandmedia/dbeuh
 
+In order to run this library, you need Ant Design, NextJs installed on your main project
+
+version: 0.0.14
+
+- add two column form
+
 version: 0.0.13
 
 - add form

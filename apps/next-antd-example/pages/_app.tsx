@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { ConfigProvider } from 'antd';
 
 // Styling
@@ -12,7 +12,6 @@ import '../styling/custom-antd.css';
 
 // Local Components
 import { Layout } from '../components/layout';
-import { useRouter } from 'next/router';
 
 export interface IColorTheme {
   primaryColor: string;
@@ -23,7 +22,7 @@ export interface IColorTheme {
   customColor1?: string;
 }
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({ Component, pageProps }) {
   const router = useRouter();
   const [color, setColor] = useState<IColorTheme>({
     primaryColor: '#1890ff',
