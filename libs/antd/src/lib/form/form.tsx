@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FormItemProps, Form, FormProps, Card, CardProps } from 'antd';
+import { FormItemProps, Form, FormProps, Card, CardProps, Row, Col } from 'antd';
 import { CSSProperties } from 'react';
 import { formItemLayoutDefault, tailFormItemLayoutDefault } from './form-default';
 
@@ -10,6 +10,7 @@ export interface IFormItem extends FormItemProps {
 
 export interface IForm {
   formfields: IFormItem[];
+  formfields2?: IFormItem[];
   type?: 'single-column' | 'dual-column';
   draftbutton?: React.ReactNode;
   submitbutton?: React.ReactNode;
@@ -34,6 +35,7 @@ function NewForm(props: IForm) {
     props.formProps?.layout === 'vertical'
       ? {}
       : { ...tailFormItemLayoutDefault, ...props.tailFormItemLayout };
+  const length = props.formfields.length;
 
   if (props.noCard) {
     return (
@@ -65,11 +67,27 @@ function NewForm(props: IForm) {
           )
         }
       >
-        {props.formfields.map(f => (
-          <Form.Item {...f} style={props.itemFormStyle}>
-            {f.component}
-          </Form.Item>
-        ))}
+        {props.type === 'dual-column' ? (
+          <Row gutter={24}>
+            <Col xs={24} md={12} lg={8} xl={7}>
+              {props.formfields.map(f => (
+                <Form.Item {...f}>{f.component}</Form.Item>
+              ))}
+            </Col>
+            <Col xs={24} md={12} lg={8} xl={7}>
+              {props.formfields2?.map(f => (
+                <Form.Item {...f}>{f.component}</Form.Item>
+              ))}
+            </Col>
+          </Row>
+        ) : (
+          props.formfields.map(f => (
+            <Form.Item {...f} style={props.itemFormStyle}>
+              {f.component}
+            </Form.Item>
+          ))
+        )}
+
         {(props.submitbuttonPosition === 'default' || !props.submitbuttonPosition) && (
           <Form.Item {...tailFormItemLayout} style={props.buttonFormStyle?.default}>
             {props.submitbutton && props.submitbutton}

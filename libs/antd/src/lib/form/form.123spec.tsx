@@ -2,7 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { cleanup, render } from '@testing-library/react';
 import { Button, Input } from 'antd';
 
-import { Form, IFormItem, useForm } from './form';
+import { Form, IFormItem } from './form';
 
 function remapFormItem(): IFormItem[] {
   const formfields: IFormItem[] = [
