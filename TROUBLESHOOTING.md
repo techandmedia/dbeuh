@@ -41,3 +41,6 @@ beforeAll(() => {
   cleanup();
 });
 ```
+
+DO NOT UPGRADE NX, causing lots of error during installation
+To avoid error, just remove the node_modules folder and yarn.lock, and put the latest version in the package.json, and do yarn install

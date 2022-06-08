@@ -31,7 +31,7 @@ export default function Page(props) {
       // console.log(page, pageSize);
       getTableData({ ...PARAMS, data: { ...PARAMS.data, page: page, size: pageSize } });
     },
-    onShowSizeChange: (current: number, size: number) => {
+    onShowSizeChange: (current, size) => {
       // console.log(current, size);
       getTableData({ ...PARAMS, data: { ...PARAMS.data, defaultCurrent: current, size: size } });
     },
