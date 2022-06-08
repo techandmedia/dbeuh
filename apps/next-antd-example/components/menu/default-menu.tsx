@@ -64,6 +64,28 @@ const defaultPublicMenu: INextLink[] = [
           },
         ],
       },
+      {
+        href: '/sample/responsive-container',
+        title: 'Responsive Container',
+        iconType: 'master',
+        submenus: [
+          {
+            href: '/sample/responsive-container',
+            title: 'Default',
+            iconType: 'master',
+          },
+          // {
+          //   href: '/sample/form/tab',
+          //   title: 'With Tab',
+          //   iconType: 'master',
+          // },
+          // {
+          //   href: '/sample/form/dual',
+          //   title: 'Dual Column Form',
+          //   iconType: 'master',
+          // },
+        ],
+      },
     ],
   },
 ];
