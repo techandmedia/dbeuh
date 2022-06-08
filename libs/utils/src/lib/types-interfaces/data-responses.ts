@@ -5,9 +5,9 @@ interface IPagination {
 }
 
 export interface IDataResponse {
-  data: any[];
+  data?: never[] | null;
   code: number;
-  title: string;
+  title?: string;
   message: string;
   pagination?: IPagination;
 }
