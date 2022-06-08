@@ -1,3 +1,4 @@
+export * from './lib/rc/rc';
 export * from './lib/form/form';
 export * from './lib/table/table';
 export * from './lib/sider/sider';

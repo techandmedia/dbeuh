@@ -73,7 +73,13 @@ function NewLayout({ children, router }: ILayout) {
       {/* style={{ marginBottom: 300 }} */}
       <Layout>
         {isSider && (
-          <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ ...menuStyle }}>
+          <Sider
+            breakpoint="md"
+            collapsedWidth="0"
+            collapsed={collapsed}
+            onCollapse={onCollapse}
+            style={{ ...menuStyle }}
+          >
             {/* Put logo here */}
             <h3>H3 biasa</h3>
             <Typography.Title level={3}>LOGO 3</Typography.Title>
