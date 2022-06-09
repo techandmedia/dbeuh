@@ -1,4 +1,4 @@
-import { Rc } from '@wsh4and/antd';
+import { ResponsiveContainer } from '@wsh4and/antd';
 import { Divider, Row, Typography } from 'antd';
 
 const { Title } = Typography;
@@ -8,21 +8,21 @@ export default function Page() {
   return (
     <>
       <Row gutter={32} style={{ rowGap: '10px' }}>
-        <Rc style={commonStyle}>
+        <ResponsiveContainer style={commonStyle}>
           <Title level={5}>Semester Akademik</Title>
-        </Rc>
-        <Rc style={{ ...commonStyle, border: '2px solid orange' }}>
+        </ResponsiveContainer>
+        <ResponsiveContainer style={{ ...commonStyle, border: '2px solid orange' }}>
           <Title level={5}>Tahun Akademik</Title>
-        </Rc>
+        </ResponsiveContainer>
       </Row>
       <Divider />
       <Row gutter={32} style={{ rowGap: '10px' }}>
-        <Rc style={commonStyle} colW={{ md: 24 }}>
+        <ResponsiveContainer style={commonStyle} colW={{ md: 24 }}>
           <Title level={5}>Semester Akademik</Title>
-        </Rc>
-        <Rc style={{ ...commonStyle, border: '2px solid orange' }}>
+        </ResponsiveContainer>
+        <ResponsiveContainer style={{ ...commonStyle, border: '2px solid orange' }}>
           <Title level={5}>Tahun Akademik</Title>
-        </Rc>
+        </ResponsiveContainer>
       </Row>
     </>
   );
