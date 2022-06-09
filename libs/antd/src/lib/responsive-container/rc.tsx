@@ -1,7 +1,7 @@
 import { Col } from 'antd';
 import { CSSProperties } from 'react';
 
-export interface IRcProps {
+export interface IResponsiveContainer {
   colW?: {
     xs?: number;
     sm?: number;
@@ -26,7 +26,11 @@ const defaultWidth = {
   xxl: 6,
 };
 
-export function Rc({ colW = defaultWidth, children, ...restProps }: IRcProps) {
+export function ResponsiveContainer({
+  colW = defaultWidth,
+  children,
+  ...restProps
+}: IResponsiveContainer) {
   return (
     <Col
       xs={colW.xs}

@@ -4,6 +4,11 @@ https://github.com/techandmedia/dbeuh
 
 In order to run this library, you need Ant Design, NextJs installed on your main project
 
+version: 0.0.19
+
+- rename rc to Responsive Container
+- remove Next Link component
+
 version: 0.0.17
 
 - add responsive container, based on Ant Design Column
