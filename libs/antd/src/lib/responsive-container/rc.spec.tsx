@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cleanup, render } from '@testing-library/react';
-
-import { Rc } from './rc';
+import { ResponsiveContainer } from './rc';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -21,9 +20,9 @@ beforeAll(() => {
   cleanup();
 });
 
-describe('Rc', () => {
+describe('ResponsiveContainer', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Rc>OK</Rc>);
+    const { baseElement } = render(<ResponsiveContainer>OK</ResponsiveContainer>);
     expect(baseElement).toBeTruthy();
   });
 });

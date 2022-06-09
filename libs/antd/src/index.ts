@@ -1,4 +1,4 @@
-export * from './lib/rc/rc';
+export * from './lib/responsive-container/rc';
 export * from './lib/form/form';
 export * from './lib/table/table';
 export * from './lib/sider/sider';
@@ -11,4 +11,3 @@ export * from './lib/content/content';
 export * from './lib/header/header';
 export * from './lib/sider/sider';
 export * from './lib/layout/layout';
-export * from './lib/next-link/next-link';
