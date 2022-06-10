@@ -1,45 +1,48 @@
 /* eslint-disable indent */
-import { Button } from 'antd';
-import { Icons, IMenuItem, NextLink, remapNextLinkMenu } from '@wsh4and/antd';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
 // Local Libraries
 import { defaultPrivateMenu, defaultPublicMenu } from './menu/default-menu';
+import { MailOutlined } from '@ant-design/icons';
 
 export function headerMenus(user: any, signOut: () => void) {
   function logout() {
     signOut();
   }
 
-  const publicAuth: IMenuItem[] = [
+  const publicAuth: ItemType[] = [
     {
-      key: 'profile',
-      submenuicon: 'user',
-      component: <span>Profile - {user?.username || 'Guest'}</span>,
-      submenus: user
-        ? [
-            {
-              key: 'logout',
-              component: (
-                <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
-                  Logout
-                </Button>
-              ),
-            },
-          ]
-        : [
-            {
-              key: 'auth',
-              component: <NextLink href="/auth" title="auth" iconType="book" />,
-            },
-          ],
+      key: '/profile',
+      label: 'Profile',
+      icon: <MailOutlined />,
+      // submenuicon: 'user',
+      // component: <span>Profile - {user?.username || 'Guest'}</span>,
+      // submenus: user
+      //   ? [
+      //       {
+      //         key: 'logout',
+      //         component: (
+      //           <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
+      //             Logout
+      //           </Button>
+      //         ),
+      //       },
+      //     ]
+      //   : [
+      //       {
+      //         key: 'auth',
+      //         component: <NavLink href="/auth" title="auth" iconType="book" />,
+      //       },
+      //     ],
     },
   ];
 
-  const menus: IMenuItem[] = user
-    ? remapNextLinkMenu(defaultPublicMenu, false)
-    : remapNextLinkMenu(defaultPublicMenu, false);
+  const menus: ItemType[] = [];
+  // ? remapNextLinkMenu(defaultPublicMenu, false)
+  // : remapNextLinkMenu(defaultPublicMenu, false);
 
-  const newMenus: IMenuItem[] = [...menus, ...publicAuth];
+  // const newMenus: ItemType[] = [...menus, ...publicAuth];
+  const newMenus: ItemType[] = [...menus, ...defaultPublicMenu];
   return newMenus;
 }
 
@@ -48,35 +51,38 @@ export function siderMenus(user, signOut: () => void, collapsed: boolean) {
     signOut();
   }
 
-  const privateAuth: IMenuItem[] = [
-    {
-      key: 'profile',
-      submenuicon: 'user',
-      component: <span>Profile - {user?.username || 'Guest'}</span>,
-      submenus: user
-        ? [
-            {
-              key: 'logout',
-              component: (
-                <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
-                  Logout
-                </Button>
-              ),
-            },
-          ]
-        : [
-            {
-              key: 'auth',
-              component: <NextLink href="/auth" title="auth" iconType="book" />,
-            },
-          ],
-    },
+  // const privateAuth: ItemType[] = [
+  //   {
+  //     key: 'profile',
+  //     submenuicon: 'user',
+  //     component: <span>Profile - {user?.username || 'Guest'}</span>,
+  //     submenus: user
+  //       ? [
+  //           {
+  //             key: 'logout',
+  //             component: (
+  //               <Button type="text" onClick={logout} icon={<Icons type="logout" />}>
+  //                 Logout
+  //               </Button>
+  //             ),
+  //           },
+  //         ]
+  //       : [
+  //           {
+  //             key: 'auth',
+  //             component: <NavLink href="/auth" title="auth" iconType="book" />,
+  //           },
+  //         ],
+  //   },
+  // ];
+
+  // const menus: ItemType[] = user
+  //   ? remapNextLinkMenu(defaultPrivateMenu, collapsed)
+  //   : remapNextLinkMenu(defaultPrivateMenu, collapsed);
+
+  const newMenus: ItemType[] = [
+    ...defaultPublicMenu,
+    // ...privateAuth
   ];
-
-  const menus: IMenuItem[] = user
-    ? remapNextLinkMenu(defaultPrivateMenu, collapsed)
-    : remapNextLinkMenu(defaultPrivateMenu, collapsed);
-
-  const newMenus: IMenuItem[] = [...menus, ...privateAuth];
   return newMenus;
 }

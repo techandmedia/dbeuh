@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CSSProperties, useState, useEffect } from 'react';
-import { ConfigProvider, Typography } from 'antd';
+import { ConfigProvider, Typography, Menu } from 'antd';
 
 // Shared Antd-Components
-import { Breadcrumb, Content, Header, Layout, Menu, Sider } from '@wsh4and/antd';
+import {
+  Breadcrumb,
+  Content,
+  Header,
+  Layout,
+  //  Menu,
+  Sider,
+} from '@wsh4and/antd';
 import { headerMenus, siderMenus } from './menu';
 
 export interface ILayout {
@@ -59,15 +66,20 @@ function NewLayout({ children, router }: ILayout) {
     }
   }, [router]);
 
+  function onClick(e) {
+    console.log('click ', e);
+    router.push(e.key);
+  }
+
   return (
     <Layout>
       {/* <Header> */}
       <Menu
-        menus={menuHeader}
-        theme="light"
+        items={menuHeader}
         mode="horizontal"
-        defaultSelectedKeys={['dua']}
-        style={{ marginBottom: 5 }}
+        onClick={onClick}
+        // defaultSelectedKeys={['dua']}
+        // style={{ marginBottom: 5 }}
       />
       {/* </Header> */}
       {/* style={{ marginBottom: 300 }} */}
@@ -87,12 +99,12 @@ function NewLayout({ children, router }: ILayout) {
               <Typography.Title level={4}>LOGO</Typography.Title>
             </div>
             <Menu
-              menus={menuSider}
-              // theme="light"
-              mode="inline"
-              defaultSelectedKeys={['dua']}
-              defaultOpenKeys={['enam-a21']}
-              style={{ ...menuStyle, height: '100%' }}
+            // menus={menuSider}
+            // // theme="light"
+            // mode="inline"
+            // defaultSelectedKeys={['dua']}
+            // defaultOpenKeys={['enam-a21']}
+            // style={{ ...menuStyle, height: '100%' }}
             />
           </Sider>
         )}
