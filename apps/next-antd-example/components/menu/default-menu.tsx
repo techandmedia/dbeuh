@@ -1,159 +1,79 @@
-import { INextLink } from '@wsh4and/antd';
+import { MailOutlined } from '@ant-design/icons';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
-const defaultHomeMenu: INextLink[] = [
+const defaultHomeMenu: ItemType[] = [
   {
-    href: '/',
-    title: 'Logo',
-    iconType: 'master',
+    key: '/',
+    label: 'Logo',
+    icon: <MailOutlined />,
   },
 ];
 
-const defaultPublicMenu: INextLink[] = [
+const defaultPublicMenu: ItemType[] = [
   ...defaultHomeMenu,
   {
-    href: '/about-us',
-    title: 'About Us',
-    iconType: 'master',
+    key: '/about-us',
+    label: 'About Us',
+    icon: <MailOutlined />,
   },
   {
-    href: '/blog',
-    title: 'Blog',
-    iconType: 'book',
+    key: '/blog',
+    label: 'Blog',
+    icon: <MailOutlined />,
   },
   {
-    href: '/sample',
-    title: 'Sample',
-    iconType: 'master',
-    submenus: [
+    key: '/sample',
+    label: 'Sample',
+    icon: <MailOutlined />,
+    children: [
       {
-        href: '/sample/table',
-        title: 'Table',
-        iconType: 'master',
-        submenus: [
+        key: '/sample/table',
+        label: 'Table',
+        icon: <MailOutlined />,
+        children: [
           {
-            href: '/sample/table/default',
-            title: 'Default',
-            iconType: 'master',
+            key: '/sample/table/default',
+            label: 'Default',
+            icon: <MailOutlined />,
           },
           {
-            href: '/sample/table/table-pagination',
-            title: 'With Pagination',
-            iconType: 'master',
+            key: '/sample/table/table-pagination',
+            label: 'With Pagination',
+            icon: <MailOutlined />,
           },
         ],
       },
       {
-        href: '/sample/form',
-        title: 'Form',
-        iconType: 'master',
-        submenus: [
+        key: '/sample/form',
+        label: 'Form',
+        icon: <MailOutlined />,
+        children: [
           {
-            href: '/sample/form/default',
-            title: 'Default',
-            iconType: 'master',
+            key: '/sample/form/default',
+            label: 'Default',
+            icon: <MailOutlined />,
           },
           {
-            href: '/sample/form/tab',
-            title: 'With Tab',
-            iconType: 'master',
+            key: '/sample/form/tab',
+            label: 'With Tab',
+            icon: <MailOutlined />,
           },
           {
-            href: '/sample/form/dual',
-            title: 'Dual Column Form',
-            iconType: 'master',
-          },
-        ],
-      },
-      {
-        href: '/sample/responsive-container',
-        title: 'Responsive Container',
-        iconType: 'master',
-        submenus: [
-          {
-            href: '/sample/responsive-container',
-            title: 'Default',
-            iconType: 'master',
-          },
-          // {
-          //   href: '/sample/form/tab',
-          //   title: 'With Tab',
-          //   iconType: 'master',
-          // },
-          // {
-          //   href: '/sample/form/dual',
-          //   title: 'Dual Column Form',
-          //   iconType: 'master',
-          // },
-        ],
-      },
-    ],
-  },
-];
-
-const menuAdmin: INextLink[] = [
-  {
-    href: '/admin',
-    title: 'Admin',
-    iconType: 'master',
-    submenus: [
-      {
-        href: '/admin/pendaftaran/',
-        title: 'Pendaftaran',
-        iconType: 'master',
-        submenus: [
-          {
-            href: '/admin/pendaftaran/s1',
-            title: 'S1',
-            iconType: 'master',
-          },
-          {
-            href: '/admin/pendaftaran/s2',
-            title: 'S2',
-            iconType: 'master',
-          },
-          {
-            href: '/admin/pendaftaran/s3',
-            title: 'S3',
-            iconType: 'master',
+            key: '/sample/form/dual',
+            label: 'Dual Column Form',
+            icon: <MailOutlined />,
           },
         ],
       },
       {
-        href: '/admin/pembayaran/',
-        title: 'Pembayaran',
-        iconType: 'master',
-        submenus: [
+        key: '/sample/responsive-container',
+        label: 'Responsive Container',
+        icon: <MailOutlined />,
+        children: [
           {
-            href: '/admin/pembayaran/pendaftaran',
-            title: 'Pendaftaran',
-            iconType: 'master',
-          },
-          {
-            href: '/admin/pembayaran/ujian',
-            title: 'Ujian',
-            iconType: 'master',
-          },
-          {
-            href: '/admin/pembayaran/wisuda',
-            title: 'Wisuda',
-            iconType: 'master',
-          },
-        ],
-      },
-      {
-        href: '/admin/akademik/',
-        title: 'Akademik',
-        iconType: 'master',
-        submenus: [
-          {
-            href: '/admin/akademik/ganti-atribut',
-            title: 'Atribut',
-            iconType: 'master',
-          },
-          {
-            href: '/admin/akademik/informasi-umum',
-            title: 'Informasi Umum',
-            iconType: 'master',
+            key: '/sample/responsive-container',
+            label: 'Default',
+            icon: <MailOutlined />,
           },
         ],
       },
@@ -161,6 +81,80 @@ const menuAdmin: INextLink[] = [
   },
 ];
 
-const defaultPrivateMenu: INextLink[] = [...defaultHomeMenu, ...menuAdmin];
+// const menuAdmin: ItemType[] = [
+//   {
+//     key: '/admin',
+//     label: 'Admin',
+//     icon:  <MailOutlined />,
+//     submenus: [
+//       {
+//         key: '/admin/pendaftaran/',
+//         label: 'Pendaftaran',
+//         icon:  <MailOutlined />,
+//         submenus: [
+//           {
+//             key: '/admin/pendaftaran/s1',
+//             label: 'S1',
+//             icon:  <MailOutlined />,
+//           },
+//           {
+//             key: '/admin/pendaftaran/s2',
+//             label: 'S2',
+//             icon:  <MailOutlined />,
+//           },
+//           {
+//             key: '/admin/pendaftaran/s3',
+//             label: 'S3',
+//             icon:  <MailOutlined />,
+//           },
+//         ],
+//       },
+//       {
+//         key: '/admin/pembayaran/',
+//         label: 'Pembayaran',
+//         icon:  <MailOutlined />,
+//         submenus: [
+//           {
+//             key: '/admin/pembayaran/pendaftaran',
+//             label: 'Pendaftaran',
+//             icon:  <MailOutlined />,
+//           },
+//           {
+//             key: '/admin/pembayaran/ujian',
+//             label: 'Ujian',
+//             icon:  <MailOutlined />,
+//           },
+//           {
+//             key: '/admin/pembayaran/wisuda',
+//             label: 'Wisuda',
+//             icon:  <MailOutlined />,
+//           },
+//         ],
+//       },
+//       {
+//         key: '/admin/akademik/',
+//         label: 'Akademik',
+//         icon:  <MailOutlined />,
+//         submenus: [
+//           {
+//             key: '/admin/akademik/ganti-atribut',
+//             label: 'Atribut',
+//             icon:  <MailOutlined />,
+//           },
+//           {
+//             key: '/admin/akademik/informasi-umum',
+//             label: 'Informasi Umum',
+//             icon:  <MailOutlined />,
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];
+
+const defaultPrivateMenu: ItemType[] = [
+  ...defaultHomeMenu,
+  // ...menuAdmin
+];
 
 export { defaultPublicMenu, defaultPrivateMenu };
