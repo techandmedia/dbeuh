@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { IDataResponse } from '../types-interfaces';
+import { IDataResponse } from '../usePostData';
 
 export function validatePagination(dataTable: IDataResponse): any[] | null {
   if (Array.isArray(dataTable.data) && dataTable.data.length > 0) {
