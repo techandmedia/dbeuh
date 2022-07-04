@@ -50,15 +50,25 @@ export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
     } catch (error) {
       // https://github.com/axios/axios/issues/3612#issuecomment-1046542497
       const errors = error as AxiosError;
-      if (!axios.isAxiosError(error)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const newError = error as any;
+      if (newError.response.data) {
         // do whatever you want with native error
+        const { data } = newError.response;
+        setData({
+          code: data.code,
+          message: data.message,
+          title: data.title,
+          loading: false,
+        });
+      } else {
+        setData({
+          code: errors?.response?.status,
+          message: errors?.response?.statusText,
+          title: 'ERROR',
+          loading: false,
+        });
       }
-      setData({
-        code: errors?.response?.status,
-        message: errors?.response?.statusText,
-        title: 'ERROR',
-        loading: false,
-      });
     }
   }
 
