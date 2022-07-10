@@ -32,7 +32,7 @@ export default function Page(props) {
       setLoading(false);
       const newData = validatePagination(res.data);
       // console.log(newData);
-      // setData(newData);
+      setData(newData);
     }
   }, []);
 

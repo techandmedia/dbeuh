@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
@@ -12,7 +13,7 @@ interface IPagination {
 export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
 
 export interface IDataResponse {
-  data: TData;
+  data: any | null;
   code: number | null | undefined;
   loading?: boolean;
   title?: string;
