@@ -1,19 +1,20 @@
-import { IDataResponse } from '../usePostData';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { IDataResponse, TData } from '../usePostData';
 
-export function validatePagination(dataTable: IDataResponse): any[] | null {
-  if (Array.isArray(dataTable.data) && dataTable.data.length > 0) {
+export function validatePagination(data: IDataResponse): TData {
+  if (Array.isArray(data.data) && data.data.length > 0) {
     /**
      * Adding number when user change page
      * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
      */
-    const numberAddition = dataTable.pagination?.page ? dataTable.pagination.page * 10 - 10 : 0;
-    const data: any[] = dataTable.data.map((data: any, index: number) => {
+    const numberAddition = data.pagination?.page ? data.pagination.page * 10 - 10 : 0;
+    const newData: any[] = data.data.map((d: any, index: number) => {
       const key = { key: index + 1 + numberAddition };
-      return { ...key, ...data };
+      return { ...key, ...d };
     });
 
-    return data;
+    return newData;
   }
 
-  return null;
+  return data.data;
 }
