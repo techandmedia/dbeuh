@@ -9,8 +9,10 @@ interface IPagination {
   totalContent: number;
 }
 
+export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
+
 export interface IDataResponse {
-  data?: never[] | null;
+  data: TData;
   code: number | null | undefined;
   loading?: boolean;
   title?: string;
@@ -25,6 +27,7 @@ export const dataDefault = {
 
 export const responseDefault: IDataResponse = {
   code: null,
+  data: null,
   loading: true,
 };
 
@@ -40,7 +43,6 @@ export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
   async function postData(PARAMS: AxiosRequestConfig) {
     try {
       const res = await axios(PARAMS);
-      setData(res.data);
       setData(d => ({
         ...d,
         ...res.data,
@@ -57,6 +59,7 @@ export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
         const { data } = newError.response;
         setData({
           code: data.code,
+          data: null,
           message: data.message,
           title: data.title,
           loading: false,
@@ -64,6 +67,7 @@ export function usePostData(INITIAL_OPTIONS?: AxiosRequestConfig) {
       } else {
         setData({
           code: errors?.response?.status,
+          data: null,
           message: errors?.response?.statusText,
           title: 'ERROR',
           loading: false,
