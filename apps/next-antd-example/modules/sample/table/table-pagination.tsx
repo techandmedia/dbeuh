@@ -43,7 +43,7 @@ export default function Page(props) {
       setTimeout(() => {
         setLoading(false);
         const newData = validatePagination(dataTable);
-        // setData(newData);
+        setData(newData);
         setTotal(dataTable.pagination.totalContent);
       }, 200);
     } else {
