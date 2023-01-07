@@ -37,3 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/envs
+apps/next-antd-example/.env.local
+
+/libs/antd-v5/node_modules

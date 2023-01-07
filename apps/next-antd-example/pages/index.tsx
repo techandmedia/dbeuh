@@ -114,7 +114,7 @@ const MyTransfer = () => {
 };
 
 interface IDemoColor {
-  color: IColorTheme;
+  color?: IColorTheme;
   customColor?: IColorTheme;
   // eslint-disable-next-line no-empty-pattern
   onColorChange?: ({}) => void;
