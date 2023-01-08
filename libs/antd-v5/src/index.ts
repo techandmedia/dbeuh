@@ -1,3 +1,4 @@
+export * from './lib/notification';
 export * from './lib/table/table';
 export * from './lib/responsive-layout/responsive-layout';
 export * from './lib/antd-v5';
