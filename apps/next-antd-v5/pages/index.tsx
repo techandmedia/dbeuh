@@ -1,59 +1,42 @@
 import { useEffect, useState } from 'react';
-import { AxiosRequestConfig } from 'axios';
-import { Button, Divider, PaginationProps, Space, notification } from '@wsh4and/antd-v5';
+import { Button, Divider, Space, notification } from '@wsh4and/antd-v5';
 import { Table } from '@wsh4and/antd-v5';
-import { usePostData } from '@wsh4and/utils';
+import { ISupabase, usePostSupabase } from '@wsh4and/utils';
 import { remapColumns } from '../components/columns';
 
-export default function Index() {
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
-  const columns = remapColumns();
-  const DEFAULT_PAGESIZE = 10;
-  const PARAMS: AxiosRequestConfig = {
-    url: '/api/supabase',
-    // Schema public sudah default, tidak perlu define
-    data: {
-      table: 'item',
-      // select: '*',
-      select: 'item_code, item_name',
-      page: 1,
-      size: DEFAULT_PAGESIZE,
-      errorMessage: 'Hubungi admin untuk bantuan',
-    },
-    // data: {
-    //   schema: 'cst',
-    //   table: 'address',
-    //   select: '*',
-    //   page: 1,
-    //   size: DEFAULT_PAGESIZE,
-    //   errorMessage: 'Hubungi admin untuk bantuan',
-    // },
-    // data: {
-    //   schema: 'ksk',
-    //   table: 'v_cart', // getting data from a 'view' table
-    //   select: '*',
-    //   page: 1,
-    //   size: DEFAULT_PAGESIZE,
-    //   errorMessage: 'Hubungi admin untuk bantuan',
-    // },
-  };
-  const [dataTable, getTableData] = usePostData(PARAMS);
-  const [api, contextHolder] = notification.useNotification();
+const PARAMS: ISupabase = {
+  url: '/api/supabase',
+  // Schema public sudah default, tidak perlu define
+  data: {
+    table: 'item',
+    // select: '*',
+    select: 'item_code, item_name',
+    page: 1,
+    size: 10,
+  },
+  // data: {
+  //   schema: 'cst',
+  //   table: 'address',
+  //   select: '*',
+  //   page: 1,
+  //   size: DEFAULT_PAGESIZE,
+  //   errorMessage: 'Hubungi admin untuk bantuan',
+  // },
+  // data: {
+  //   schema: 'ksk',
+  //   table: 'v_cart', // getting data from a 'view' table
+  //   select: '*',
+  //   page: 1,
+  //   size: DEFAULT_PAGESIZE,
+  //   errorMessage: 'Hubungi admin untuk bantuan',
+  // },
+};
 
-  const pagination: PaginationProps = {
-    total: total,
-    defaultCurrent: 1,
-    defaultPageSize: DEFAULT_PAGESIZE,
-    onChange: (page, pageSize) => {
-      // console.log(page, pageSize);
-      getTableData({ ...PARAMS, data: { ...PARAMS.data, page: page, size: pageSize } });
-    },
-    onShowSizeChange: (current, size) => {
-      // console.log(current, size);
-      getTableData({ ...PARAMS, data: { ...PARAMS.data, defaultCurrent: current, size: size } });
-    },
-  };
+export default function Index() {
+  const columns = remapColumns();
+  const [data, setData] = useState([]);
+  const { dataTable, pagination, setTotal } = usePostSupabase(PARAMS);
+  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     if (dataTable.code === 200) {
