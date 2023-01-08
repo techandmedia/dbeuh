@@ -10,9 +10,9 @@ export function remapColumns(): TableColumnsType {
       fixed: 'left',
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Kode Item',
+      dataIndex: 'item_code',
+      // key: ' item_code',
       width: 100,
       fixed: 'left',
       filters: [
@@ -28,69 +28,23 @@ export function remapColumns(): TableColumnsType {
       onFilter: (value, record: any) => record.name.indexOf(value) === 0,
     },
     {
-      title: 'Other',
-      children: [
+      title: 'Nama Item',
+      dataIndex: 'item_name',
+      width: 100,
+      fixed: 'left',
+      filters: [
         {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
-          width: 150,
-          sorter: (a: any, b: any) => a.age - b.age,
+          text: 'Joe',
+          value: 'Joe',
         },
         {
-          title: 'Address',
-          children: [
-            {
-              title: 'Street',
-              dataIndex: 'street',
-              key: 'street',
-              width: 150,
-            },
-            {
-              title: 'Block',
-              children: [
-                {
-                  title: 'Building',
-                  dataIndex: 'building',
-                  key: 'building',
-                  width: 100,
-                },
-                {
-                  title: 'Door No.',
-                  dataIndex: 'number',
-                  key: 'number',
-                  width: 100,
-                },
-              ],
-            },
-          ],
+          text: 'John',
+          value: 'John',
         },
       ],
-    },
-    {
-      title: 'Company',
-      children: [
-        {
-          title: 'Company Address',
-          dataIndex: 'companyAddress',
-          key: 'companyAddress',
-          width: 200,
-        },
-        {
-          title: 'Company Name',
-          dataIndex: 'companyName',
-          key: 'companyName',
-          width: 200,
-        },
-      ],
-    },
-    {
-      title: 'Gender',
-      dataIndex: 'gender',
-      key: 'gender',
-      width: 80,
-      fixed: 'right',
+      onFilter: (value, record: any) => record.name.indexOf(value) === 0,
     },
   ];
+
   return columns;
 }

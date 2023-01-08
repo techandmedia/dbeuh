@@ -47,7 +47,7 @@ interface IMainResponsive {
 export function MainHeader(props: IMainResponsive) {
   const themes = theme.useToken();
   const { token } = themes;
-  console.log('token', token);
+  // console.log('token', token);
 
   const commonStyle = {
     lineHeight: '64px',
@@ -160,18 +160,27 @@ export function MainFooter(props: IMainResponsive) {
   );
 }
 
+type ThemeData = {
+  borderRadius: number;
+  colorPrimary: string;
+};
+
+const defaultTheme: ThemeData = {
+  borderRadius: 6,
+  colorPrimary: '#FF4500',
+};
+
 export default function AppLayout({ children }) {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const { style, setStyle } = useResponsive({ alignment: 'left' });
+  const [themes, setThemes] = React.useState<ThemeData>(defaultTheme);
 
   return (
     <ConfigProvider
       theme={{
-        token: {
-          colorPrimary: '#FF4500',
-        },
+        token: { ...themes },
       }}
     >
       <ResponsiveLayout
