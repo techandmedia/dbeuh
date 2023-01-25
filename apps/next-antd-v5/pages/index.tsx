@@ -10,13 +10,13 @@ import { supabaseClient } from '../utils';
 const PARAMS: ISupabase = {
   url: '/api/supabase',
   // Schema public sudah default, tidak perlu define
-  data: {
-    table: 'brand',
-    select: '*',
-    // select: 'item_code, item_name',
-    page: 1,
-    size: 5,
-  },
+  // data: {
+  //   table: 'brand',
+  //   select: '*',
+  //   // select: 'item_code, item_name',
+  //   page: 1,
+  //   size: 5,
+  // },
   // data: {
   //   schema: 'cst',
   //   table: 'address',
@@ -24,13 +24,13 @@ const PARAMS: ISupabase = {
   //   page: 1,
   //   size: 5,
   // },
-  // data: {
-  //   schema: 'ksk',
-  //   table: 'v_cart', // getting data from a 'view' table
-  //   select: '*',
-  //   page: 1,
-  //   size: 10,
-  // },
+  data: {
+    schema: 'ksk',
+    table: 'v_cart', // getting data from a 'view' table
+    select: '*',
+    page: 1,
+    size: 10,
+  },
 };
 
 export default function Index(props) {

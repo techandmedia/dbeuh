@@ -19,7 +19,7 @@ interface IData {
   pagination?: IPagination;
 }
 
-function checkEnvironment(data: any) {
+function checkHashEnvironment(data: any) {
   if (process.env['NODE_ENV'] === 'production') {
     return hashPayload(data);
   }
@@ -27,9 +27,16 @@ function checkEnvironment(data: any) {
   return data;
 }
 
+function checkDeHashEnvironment(data: any) {
+  if (process.env['NODE_ENV'] === 'production') {
+    return deHashPayload(data);
+  }
+
+  return data;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<IData>) {
-  const { token, schema, table, select, page, size } =
-    process.env['NODE_ENV'] === 'production' ? deHashPayload(req.body) : req.body;
+  const { token, schema, table, select, page, size } = checkDeHashEnvironment(req.body);
 
   try {
     const options = {
@@ -70,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       res.status(500).json({
         code: 500,
         title: `ERROR: ${code}`,
-        message: message,
+        message: checkHashEnvironment(message),
         data: null,
       });
     } else {
@@ -85,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         data: data,
         pagination: pagination,
       });
-      const hashedData = checkEnvironment(withPagination);
+      const hashedData = checkHashEnvironment(withPagination);
       res.status(200).json({
         code: 200,
         title: 'OK',

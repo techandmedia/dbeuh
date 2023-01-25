@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { PaginationProps } from '@wsh4and/antd-v5';
 import { IDataResponse, responseDefault, usePostData } from '../usePostData';
-import { deHashPayload, hashPayload } from '../hash-payload';
+import { deHashPayload, deHashString, hashPayload } from '../hash-payload';
 
 export interface ISupabase extends AxiosRequestConfig {
   data: {
@@ -18,9 +18,25 @@ export interface ISupabase extends AxiosRequestConfig {
   };
 }
 
-function checkEnvironment(data: any) {
+function checkHashEnvironment(data: any) {
   if (process.env['NODE_ENV'] === 'production') {
     return hashPayload(data);
+  }
+
+  return data;
+}
+
+function checkDeHashEnvironment(data: any) {
+  if (process.env['NODE_ENV'] === 'production') {
+    return deHashPayload(data);
+  }
+
+  return data;
+}
+
+function checkDeHashString(data: any) {
+  if (process.env['NODE_ENV'] === 'production') {
+    return deHashString(data);
   }
 
   return data;
@@ -56,7 +72,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: checkEnvironment({ ...INITIAL_OPTIONS?.data, page: page, size: pageSize }),
+        data: checkHashEnvironment({ ...INITIAL_OPTIONS?.data, page: page, size: pageSize }),
       });
     },
     onShowSizeChange: (current, size) => {
@@ -64,7 +80,11 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: checkEnvironment({ ...INITIAL_OPTIONS?.data, defaultCurrent: current, size: size }),
+        data: checkHashEnvironment({
+          ...INITIAL_OPTIONS?.data,
+          defaultCurrent: current,
+          size: size,
+        }),
       });
     },
   };
@@ -72,7 +92,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
   function postData() {
     getTableData({
       ...INITIAL_OPTIONS,
-      data: checkEnvironment({ ...INITIAL_OPTIONS?.data, token }),
+      data: checkHashEnvironment({ ...INITIAL_OPTIONS?.data, token }),
     });
   }
 
@@ -81,7 +101,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: checkEnvironment({ ...INITIAL_OPTIONS, token }),
+        data: checkHashEnvironment({ ...INITIAL_OPTIONS, token }),
       });
     }
   }, [token, INITIAL_OPTIONS]);
@@ -92,8 +112,13 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       setData(d => ({
         ...response,
         loading: false,
-        data:
-          process.env['NODE_ENV'] === 'production' ? deHashPayload(response.data) : response.data,
+        data: checkDeHashEnvironment(response.data),
+      }));
+    }
+    if (response.code === 500) {
+      setData(d => ({
+        ...response,
+        message: checkDeHashString(response.message),
       }));
     }
   }, [response]);
