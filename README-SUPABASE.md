@@ -1,5 +1,8 @@
 # Dbeuh
 
+Update on using anon key / service key
+[StackOverflow](https://stackoverflow.com/questions/75230324/supabase-row-level-security-policy-rls-how-to-limit-access-with-supabase-ano/75230657?noredirect=1#comment132753295_75230657)
+
 ```sql
 GRANT USAGE ON SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;

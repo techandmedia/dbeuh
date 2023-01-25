@@ -7,7 +7,7 @@ import { validatePagination } from '../table-utils';
 interface IPagination {
   page: number;
   size: number;
-  totalContent: number;
+  totalContent: number | null;
 }
 
 export type TData = string[] | number[] | string | number | Record<string, unknown> | null;

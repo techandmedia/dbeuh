@@ -41,11 +41,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     const options = {
       schema: schema || 'public',
-      global: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
+      // global: {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // },
     };
     console.log('options', options);
     console.log('req.body', schema, table, select, page, size);
@@ -106,7 +106,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(500).json({
       code: 500,
       title: 'ERROR',
-      message: error.message,
+      message: checkHashEnvironment(error.message),
       data: null,
     });
   }

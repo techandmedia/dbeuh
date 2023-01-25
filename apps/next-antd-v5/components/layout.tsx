@@ -14,7 +14,7 @@ import 'libs/antd-v5/node_modules/antd/dist/reset.css';
 
 const { Header, Footer, Sider } = Layout;
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map(key => ({
+const items1: MenuProps['items'] = ['/', 'coba', '3'].map(key => ({
   key,
   label: `nav ${key}`,
 }));
@@ -86,7 +86,7 @@ export function MainHeader(props: IMainResponsive) {
           <Menu
             theme={props.style.theme}
             mode="horizontal"
-            defaultSelectedKeys={['2']}
+            defaultSelectedKeys={['/']}
             items={items1}
           />
         </Header>

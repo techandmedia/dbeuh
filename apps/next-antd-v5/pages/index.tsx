@@ -4,19 +4,19 @@ import { Table } from '@wsh4and/antd-v5';
 import { ISupabase, usePostSupabase } from '@wsh4and/utils';
 import { remapColumns } from '../components/columns';
 import { useEffect, useState } from 'react';
-import SignUp from '../components/sign-up-form';
+import AuthForm from '../components/auth-form';
 import { supabaseClient } from '../utils';
 
 const PARAMS: ISupabase = {
-  url: '/api/supabase',
+  type: 'data',
   // Schema public sudah default, tidak perlu define
-  // data: {
-  //   table: 'brand',
-  //   select: '*',
-  //   // select: 'item_code, item_name',
-  //   page: 1,
-  //   size: 5,
-  // },
+  data: {
+    table: 'brand',
+    select: '*',
+    // select: 'item_code, item_name',
+    page: 1,
+    size: 5,
+  },
   // data: {
   //   schema: 'cst',
   //   table: 'address',
@@ -24,34 +24,25 @@ const PARAMS: ISupabase = {
   //   page: 1,
   //   size: 5,
   // },
-  data: {
-    schema: 'ksk',
-    table: 'v_cart', // getting data from a 'view' table
-    select: '*',
-    page: 1,
-    size: 10,
-  },
+  // data: {
+  //   schema: 'ksk',
+  //   table: 'v_cart', // getting data from a 'view' table
+  //   select: '*',
+  //   page: 1,
+  //   size: 10,
+  // },
 };
 
 export default function Index(props) {
-  const columns = remapColumns();
   const [token, setToken] = useState(null);
-  const options = {
-    schema: PARAMS.data.schema,
-    token,
-  };
-  const supabase = supabaseClient(options);
-  const { response, pagination, postData } = usePostSupabase(PARAMS, token);
+  const [signedUp, setSignedUp] = useState(false);
+  const supabase = supabaseClient();
+  const { response, pagination, postData } = usePostSupabase(PARAMS);
 
   async function signUpSupabase(email, password) {
     const { user, session, error } = await supabase.auth.signUp({
       email: email,
       password: password,
-      // options: {
-      //   data: {
-      //     user_name: userName.value,
-      //   },
-      // },
     });
     console.log(user, session, error);
 
@@ -82,39 +73,28 @@ export default function Index(props) {
     return { error };
   }
 
-  useEffect(() => {
-    console.log('index', response);
-  }, [response]);
-
   return (
     <>
       <Notification response={response} />
       <Space wrap>
-        <h1>TES</h1>;<Button type="primary">Primary Button</Button>
-        <Button onClick={postData}>Refresh Data</Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            setSignedUp(s => !s);
+          }}
+        >
+          Sign Up
+        </Button>
         <Button onClick={signOutSupabase} type="dashed">
           Sign Out
         </Button>
-        <Button type="text">Text Button</Button>
-        <Button type="link">Link Button</Button>
       </Space>
       <br />
       <Divider type="horizontal" style={{ color: 'orange', fontSize: 10 }} />
-      <SignUp supabaseAuth={signUpSupabase} />
+      {signedUp && <AuthForm title="Form Sign UP" button="Sign Up" supabaseAuth={signUpSupabase} />}
       <br />
-      <SignUp supabaseAuth={signInSupabase} />
+      {!token && <AuthForm title="Form Sign IN" button="Sign IN" supabaseAuth={signInSupabase} />}
       <br />
-      <Divider type="horizontal" style={{ color: 'orange', fontSize: 10 }} />
-      <Table
-        columns={columns}
-        dataSource={response.data}
-        bordered
-        // scrolly={200}
-        scrollx={300}
-        loading={response.loading}
-        pagination={pagination}
-        rowKey="key"
-      />
     </>
   );
 }

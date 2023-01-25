@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from '@wsh4and/antd-v5';
 
-export default function SignUp(props) {
+export default function AuthForm(props) {
   function onFinish(values: any) {
     console.log('Success:', values);
     props.supabaseAuth(values.username, values.password);
@@ -13,6 +13,7 @@ export default function SignUp(props) {
 
   return (
     <Form
+      title={props.title}
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
@@ -43,7 +44,7 @@ export default function SignUp(props) {
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          {props.button}
         </Button>
       </Form.Item>
     </Form>

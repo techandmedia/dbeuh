@@ -37,7 +37,7 @@ export function Notification(props: INotificationProps) {
       openNotification(api, props?.response);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props?.response?.code]);
+  }, [props?.response]);
 
   return <div>{contextHolder}</div>;
 }
