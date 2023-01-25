@@ -3,7 +3,7 @@ import { notification } from 'antd';
 import { NotificationInstance } from 'antd/es/notification/interface';
 
 export interface INotificationProps {
-  data: INotification;
+  response: INotification;
 }
 
 interface INotification {
@@ -12,18 +12,18 @@ interface INotification {
   code: number;
 }
 
-function openNotification(api: NotificationInstance, data: INotification) {
+function openNotification(api: NotificationInstance, response: INotification) {
   api.open({
     message: (
-      <span style={{ color: data.code === 500 ? 'orangered' : '#b7eb8f' }}>
-        <strong>{data.title}</strong>
+      <span style={{ color: response.code === 500 ? 'orangered' : '#b7eb8f' }}>
+        <strong>{response.title}</strong>
       </span>
     ),
     description: (
       <>
         Hubungi Admin untuk bantuan, telah terjadi error:
         <br />
-        <strong>{data.message}</strong>
+        <strong>{response.message}</strong>
       </>
     ),
   });
@@ -33,11 +33,11 @@ export function Notification(props: INotificationProps) {
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
-    if (props?.data?.code === 500) {
-      openNotification(api, props?.data);
+    if (props?.response?.code === 500) {
+      openNotification(api, props?.response);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props?.data?.code]);
+  }, [props?.response?.code]);
 
   return <div>{contextHolder}</div>;
 }

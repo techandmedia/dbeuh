@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-// import { supabase } from 'apps/next-antd-v5/utils';
-import { createClient } from '@supabase/supabase-js';
+import { deHashPayload, hashPayload, validatePagination } from '@wsh4and/utils';
+import { supabaseClient } from '../../../next-antd-v5/utils';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -12,35 +12,48 @@ interface IPagination {
 }
 
 interface IData {
-  data: any[];
+  data: any[] | any;
   code: number;
   title: string;
   message: string;
   pagination?: IPagination;
 }
 
+interface IBody extends NextApiRequest {
+  body: {
+    schema?: string;
+    table: string;
+    select: string;
+    page: number;
+    size: number;
+  };
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<IData>) {
-  const { page, size } = req.body;
-  console.log('req.body==========', req.body);
+  const { token, schema, table, select, page, size } = deHashPayload(req.body);
 
   try {
     const options = {
-      schema: req.body.schema,
+      schema: schema || 'public',
+      global: {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
     };
-    const supabase = createClient(
-      process.env.NX_SUPABASE_URL,
-      process.env.NX_SUPABASE_ANON_KEY,
-      options
-    );
+    console.log('options', options);
+    console.log('req.body', schema, table, select, page, size);
+    const supabase = supabaseClient(options);
+    const firstIndex = page * size - size;
+    const secondIndex = page * size - 1;
     const { count, error: errorCount } = await supabase
-      .from(req.body.table)
-      .select(req.body.select, { count: 'exact', head: true });
+      .from(table)
+      .select(select, { count: 'exact', head: true })
+      .range(firstIndex, secondIndex);
 
-    const firstIndex = req.body.page * req.body.size - req.body.size;
-    const secondIndex = req.body.page * req.body.size - 1;
     const { data, error: errorData } = await supabase
-      .from(req.body.table)
-      .select(req.body.select)
+      .from(table)
+      .select(select)
       .range(firstIndex, secondIndex);
 
     // console.log('req.count==========', count);
@@ -48,7 +61,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     // console.log('req.errorCount==========', errorCount);
     // console.log('req.error==========', errorData);
 
+    // How to handle error "error Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
+    // Use conditional to prevent the code keeps running and sending a null data
+    // The reason is when error it shouldnt send another response and should be close
     if (errorCount || errorData) {
+      console.log('errorCount', errorCount, errorData);
       const code = errorCount.code || errorData.code;
       const message = errorCount.message || errorData.message;
       res.status(500).json({
@@ -57,21 +74,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         message: message,
         data: null,
       });
-    }
-
-    res.status(200).json({
-      code: 200,
-      title: 'OK',
-      message: 'Sending Data',
-      data: data,
-      pagination: {
+    } else {
+      // validatePagination is important as it create a 'row' key which is important
+      // for the table so it doesnt produce the error 'missing key'
+      const pagination = {
         page: page,
         size: size,
         totalContent: count,
-      },
-    });
+      };
+      const withPagination = validatePagination({
+        data: data,
+        pagination: pagination,
+      });
+      console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
+      const hashedData =
+        process.env.NODE_ENV === 'production' ? hashPayload(withPagination) : withPagination;
+      res.status(200).json({
+        code: 200,
+        title: 'OK',
+        message: 'Sending Data',
+        data: hashedData,
+        pagination: pagination,
+      });
+    }
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
     res.status(500).json({
       code: 500,
       title: 'ERROR',

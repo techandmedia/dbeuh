@@ -1,7 +1,6 @@
 export * from './lib/notification';
 export * from './lib/table/table';
 export * from './lib/responsive-layout/responsive-layout';
-export * from './lib/antd-v5';
 export {
   Layout,
   Button,
@@ -14,6 +13,9 @@ export {
   Divider,
   Space,
   notification,
+  Checkbox,
+  Form,
+  Input,
 } from 'antd';
 
 export type { PaginationProps, MenuProps } from 'antd';

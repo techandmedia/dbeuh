@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IDataResponse } from '../usePostData';
 
-export function validatePagination(data: IDataResponse): any | null {
+export function validatePagination(data: IDataResponse | any): any | null {
   if (Array.isArray(data.data) && data.data.length > 0) {
     /**
      * Adding number when user change page
