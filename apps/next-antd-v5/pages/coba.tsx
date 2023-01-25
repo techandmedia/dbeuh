@@ -33,15 +33,15 @@ const PARAMS: ISupabase = {
 
 export default function Index(props) {
   const columns = remapColumns();
-  const { response, pagination, postData } = usePostSupabase(PARAMS);
+  const [response, pagination, getDataCoba] = usePostSupabase(PARAMS);
 
-  // useEffect(() => {
-  //   console.log('pagination==========', pagination);
-  // }, [pagination]);
+  useEffect(() => {
+    console.log('pagination==========', pagination);
+  }, [pagination]);
 
-  // useEffect(() => {
-  //   console.log('response==========', response.data);
-  // }, [response.data]);
+  useEffect(() => {
+    console.log('response==========', response.data);
+  }, [response.data]);
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function Index(props) {
         <Button
           type="default"
           onClick={() => {
-            postData({ ...PARAMS, data: { ...PARAMS.data, page: 1 } });
+            getDataCoba({ ...PARAMS, data: { ...PARAMS.data, page: 1 } });
           }}
         >
           Refresh Data at 1st page
@@ -58,7 +58,7 @@ export default function Index(props) {
         <Button
           type="primary"
           onClick={() =>
-            postData({
+            getDataCoba({
               ...PARAMS,
               data: { ...PARAMS.data, page: pagination.current },
             })

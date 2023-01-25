@@ -37,7 +37,6 @@ export default function Index(props) {
   const [token, setToken] = useState(null);
   const [signedUp, setSignedUp] = useState(false);
   const supabase = supabaseClient();
-  const { response, pagination, postData } = usePostSupabase(PARAMS);
 
   async function signUpSupabase(email, password) {
     const { user, session, error } = await supabase.auth.signUp({
@@ -75,7 +74,7 @@ export default function Index(props) {
 
   return (
     <>
-      <Notification response={response} />
+      {/* <Notification response={response} /> */}
       <Space wrap>
         <Button
           type="primary"

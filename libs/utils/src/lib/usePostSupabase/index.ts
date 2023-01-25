@@ -132,9 +132,9 @@ export function usePostSupabase(INITIAL_OPTIONS: ISupabase) {
   async function getTotal(options: ISupabase) {
     const data = await postSupa(options);
     if (data.code === 200) {
-      setTotal(data.data);
+      setPagination(p => ({ ...p, total: data.data }));
     } else {
-      setTotal(0);
+      setPagination(p => ({ ...p, total: 0 }));
     }
   }
 
@@ -179,13 +179,5 @@ export function usePostSupabase(INITIAL_OPTIONS: ISupabase) {
     setPagination(p => ({ ...p, current: currentPage }));
   }, [currentPage]);
 
-  return {
-    postData,
-    response: data,
-    pagination: {
-      ...pagination,
-      total: total,
-      current: currentPage,
-    },
-  };
+  return [data, pagination, postData] as const;
 }
