@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
@@ -17,9 +18,12 @@ export interface ISupabase extends AxiosRequestConfig {
   };
 }
 
-interface IOptions {
-  url: string;
-  data: AxiosRequestConfig;
+function checkEnvironment(data: any) {
+  if (process.env['NODE_ENV'] === 'production') {
+    return hashPayload(data);
+  }
+
+  return data;
 }
 
 // @ts-ignore
@@ -52,7 +56,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: hashPayload({ ...INITIAL_OPTIONS?.data, page: page, size: pageSize }),
+        data: checkEnvironment({ ...INITIAL_OPTIONS?.data, page: page, size: pageSize }),
       });
     },
     onShowSizeChange: (current, size) => {
@@ -60,7 +64,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: hashPayload({ ...INITIAL_OPTIONS?.data, defaultCurrent: current, size: size }),
+        data: checkEnvironment({ ...INITIAL_OPTIONS?.data, defaultCurrent: current, size: size }),
       });
     },
   };
@@ -68,7 +72,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
   function postData() {
     getTableData({
       ...INITIAL_OPTIONS,
-      data: hashPayload({ ...INITIAL_OPTIONS?.data, token }),
+      data: checkEnvironment({ ...INITIAL_OPTIONS?.data, token }),
     });
   }
 
@@ -77,7 +81,7 @@ export function usePostSupabase(INITIAL_OPTIONS?: ISupabase, token: string) {
       resetDataResponse();
       getTableData({
         ...INITIAL_OPTIONS,
-        data: hashPayload({ ...INITIAL_OPTIONS, token }),
+        data: checkEnvironment({ ...INITIAL_OPTIONS, token }),
       });
     }
   }, [token, INITIAL_OPTIONS]);

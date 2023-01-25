@@ -74,6 +74,14 @@ export default function Index(props) {
     return { user, session, error };
   }
 
+  async function signOutSupabase() {
+    const { error } = await supabase.auth.signOut();
+    console.log(error);
+    setToken(null);
+
+    return { error };
+  }
+
   useEffect(() => {
     console.log('index', response);
   }, [response]);
@@ -83,8 +91,10 @@ export default function Index(props) {
       <Notification response={response} />
       <Space wrap>
         <h1>TES</h1>;<Button type="primary">Primary Button</Button>
-        <Button onClick={postData}>Default Button</Button>
-        <Button type="dashed">Dashed Button</Button>
+        <Button onClick={postData}>Refresh Data</Button>
+        <Button onClick={signOutSupabase} type="dashed">
+          Sign Out
+        </Button>
         <Button type="text">Text Button</Button>
         <Button type="link">Link Button</Button>
       </Space>

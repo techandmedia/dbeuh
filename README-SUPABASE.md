@@ -2,7 +2,7 @@
 
 ```sql
 GRANT USAGE ON SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA skm TO postgres, authenticated, service_role, dashboard_user, anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
 DROP SCHEMA skm CASCADE;
 ```
 
@@ -51,7 +51,6 @@ export function supabaseClient(options, token) {
   );
 }
 ```
-
 
 ```bash
 curl 'https://qahrpqxcgrumwkayyowt.co/rest/v1/brand?select=*' \

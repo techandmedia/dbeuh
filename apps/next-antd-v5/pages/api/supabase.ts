@@ -19,18 +19,17 @@ interface IData {
   pagination?: IPagination;
 }
 
-interface IBody extends NextApiRequest {
-  body: {
-    schema?: string;
-    table: string;
-    select: string;
-    page: number;
-    size: number;
-  };
+function checkEnvironment(data: any) {
+  if (process.env['NODE_ENV'] === 'production') {
+    return hashPayload(data);
+  }
+
+  return data;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<IData>) {
-  const { token, schema, table, select, page, size } = deHashPayload(req.body);
+  const { token, schema, table, select, page, size } =
+    process.env['NODE_ENV'] === 'production' ? deHashPayload(req.body) : req.body;
 
   try {
     const options = {
@@ -56,18 +55,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       .select(select)
       .range(firstIndex, secondIndex);
 
-    // console.log('req.count==========', count);
-    // console.log('req.data==========', data);
-    // console.log('req.errorCount==========', errorCount);
-    // console.log('req.error==========', errorData);
+    console.log('req.count==========', count);
+    console.log('req.data==========', data);
+    console.log('req.errorCount==========', errorCount);
+    console.log('req.error==========', errorData);
 
     // How to handle error "error Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
     // Use conditional to prevent the code keeps running and sending a null data
     // The reason is when error it shouldnt send another response and should be close
     if (errorCount || errorData) {
       console.log('errorCount', errorCount, errorData);
-      const code = errorCount.code || errorData.code;
-      const message = errorCount.message || errorData.message;
+      const code = errorCount.code || errorData.code || 500;
+      const message = errorCount.message || errorData.message || '';
       res.status(500).json({
         code: 500,
         title: `ERROR: ${code}`,
@@ -86,10 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         data: data,
         pagination: pagination,
       });
-      console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-
-      const hashedData =
-        process.env.NODE_ENV === 'production' ? hashPayload(withPagination) : withPagination;
+      const hashedData = checkEnvironment(withPagination);
       res.status(200).json({
         code: 200,
         title: 'OK',
@@ -99,7 +95,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       });
     }
   } catch (error) {
-    console.log('error', error);
+    console.log('error==============', error);
     res.status(500).json({
       code: 500,
       title: 'ERROR',
