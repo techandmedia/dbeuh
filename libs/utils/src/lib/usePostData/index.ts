@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { validatePagination } from '../table-utils';
 
-interface IPagination {
+export interface IPagination {
   page: number;
   size: number;
   totalContent: number | null;
