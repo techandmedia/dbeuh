@@ -31,6 +31,14 @@ export interface IUseTheme {
   alignment?: 'center' | 'left';
 }
 
+/**
+ * This hooks mainly design for responsive layout in conjungtion with the layout component itself
+ * The default value and how it changes are already tested with multiple use cases so they are definetly works
+ * in term of responsivenes.
+ * @param theme to change the color theme, normally it's either light or dark
+ * @param alignment is where we can 'adjust' the alignment of the content; though it's not perfect.
+ * @returns the style which mostly focused on mobile
+ */
 export function useResponsive(param: IUseTheme) {
   const screens = useBreakpoint();
   const [style, setStyle] = useState<IUseResponsive>({
@@ -115,6 +123,16 @@ export function useResponsive(param: IUseTheme) {
   return { style, setStyle };
 }
 
+/**
+ * @param style is an object consist of 4 different styles in 4 parts of the layout.
+ * @param rootLayoutStyle is the root style determining the root container. This is the parent container for all layout/elements.
+ * Here mostly where you 'reset' the margin or padding to 0. This layout consist of 2 elements and divide by 2 columns for
+ * the inner layout and the sider.
+ * @param outerLayoutStyle is the layout that wrap the header, the inner layout and the footer
+ * @param innerLayoutStyle wraps the breadcrumb menu (if any) and the content
+ * @param contentStyle is the container for the main content
+ * @returns the main content
+ */
 export function ResponsiveLayout(props: IResponsiveLayoutProps) {
   const { rootLayoutStyle, innerLayoutStyle, outerLayoutStyle, contentStyle } = props;
   const { header, breadcrumb, children, sider, footer } = props;
