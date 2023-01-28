@@ -5,6 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx run-many --target=build --all",
+    "build-utils": "nx run utils:build --prod",
+    "build-antdv5": "nx run antd-v5:build --prod",
+    "build-v5": "yarn build-utils && yarn build-antdv5",
     "test": "nx test",
     "test-all": "nx run-many --target=test --all --onlyChanged --codeCoverage",
     "dev": "nx serve next-antd-example",
