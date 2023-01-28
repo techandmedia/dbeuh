@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -34,7 +35,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
   const firstIndex = page * size - size;
   const secondIndex = page * size - 1;
 
-  // @ts-ignore
   const { count, error: countError } = await supabase
     .from(table)
     .select(select, { count: 'exact', head: true })
@@ -46,7 +46,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
 
   if (countError || dataError) {
     const error = countError || dataError;
-    // eslint-disable-next-line no-throw-literal
     throw {
       code: 500,
       title: 'ERROR',

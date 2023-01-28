@@ -1,7 +1,13 @@
-# antd-v5
+# UI Template based on Ant Design v5
 
-This library was generated with [Nx](https://nx.dev).
+https://github.com/techandmedia/dbeuh
 
-## Running unit tests
+In order to run this library, you need Ant Design Version 5, NextJs installed on your main project
 
-Run `nx test antd-v5` to execute the unit tests via [Jest](https://jestjs.io).
+version: 1.0.0
+
+- Add Layout
+  - Responsive Layout
+  - Header, Sider, Content Layout
+- Table Component
+  - Notification integration
