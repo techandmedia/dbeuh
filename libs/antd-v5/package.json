@@ -1,0 +1,7 @@
+{
+  "name": "@wsh4and/antd-v5",
+  "version": "0.0.1",
+  "dependencies": {
+    "antd": "^5.1.2"
+  }
+}

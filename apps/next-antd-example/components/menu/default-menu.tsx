@@ -79,6 +79,11 @@ const defaultPublicMenu: ItemType[] = [
       },
     ],
   },
+  {
+    key: '/supabase',
+    label: 'Supabase',
+    icon: <MailOutlined />,
+  },
 ];
 
 // const menuAdmin: ItemType[] = [

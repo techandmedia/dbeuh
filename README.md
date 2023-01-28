@@ -10,6 +10,16 @@ This project was generated using [Nx](https://nx.dev).
 
 ## This UI consist of
 
+We are moving from previous Ant Design version to version 5
+
+v1.0.0
+
+- [Example page and data fetching using Supabase](/apps/next-antd-v5/README.md)
+- [Adding Supabase](/libs/utils/README.md)
+- [Components using Ant Design v5](/libs/antd-v5/README.md)
+
+Previous one will still be available but moving forward will be replaced by v5 by default
+
 - [Custom Ant Design](/libs/antd/README.md)
 - [Simple Utilities](/libs/utils/README.md)
 

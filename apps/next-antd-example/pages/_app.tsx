@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { Auth } from '@supabase/ui';
 import { ConfigProvider } from 'antd';
 
 // Styling
@@ -12,6 +13,7 @@ import '../styling/custom-antd.css';
 
 // Local Components
 import { Layout } from '../components/layout';
+import { supabase } from '../utils/supabase';
 
 export interface IColorTheme {
   primaryColor: string;
@@ -56,20 +58,22 @@ function CustomApp({ Component, pageProps }) {
   }
 
   return (
-    <Layout router={router}>
-      <Head>
-        <title>Welcome to next-antd-example!</title>
-      </Head>
-      <main className="app">
-        <Component
-          {...pageProps}
-          color={color}
-          customColor={customColor}
-          onColorChange={onColorChange}
-          router={router}
-        />
-      </main>
-    </Layout>
+    <Auth.UserContextProvider supabaseClient={supabase}>
+      <Layout router={router}>
+        <Head>
+          <title>Welcome to next-antd-example!</title>
+        </Head>
+        <main className="app">
+          <Component
+            {...pageProps}
+            color={color}
+            customColor={customColor}
+            onColorChange={onColorChange}
+            router={router}
+          />
+        </main>
+      </Layout>
+    </Auth.UserContextProvider>
   );
 }
 

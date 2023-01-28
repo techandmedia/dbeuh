@@ -17,6 +17,7 @@
     "paths": {
       "@dbeuh/utils": ["libs/utils2/src/index.ts"],
       "@wsh4and/antd": ["libs/antd/src/index.ts"],
+      "@wsh4and/antd-v5": ["libs/antd-v5/src/index.ts"],
       "@wsh4and/utils": ["libs/utils/src/index.ts"]
     }
   },

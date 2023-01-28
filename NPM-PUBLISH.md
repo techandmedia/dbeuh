@@ -80,6 +80,7 @@ List of relevant comment. Add all of them if you make changes for all packages a
 
 - publish-antd
 - publish-utils
+- publish-antd-v5
 
 If you dont want to publish the package, make sure to add this in the comment
 SKIP SCRIPTS
