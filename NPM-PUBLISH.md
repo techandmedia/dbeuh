@@ -96,6 +96,7 @@ How to publish manually
 # From the root of your project, login to your npm account
 # Usually the token expired after 1 year
 npm login
+# Enter your account credentials; npm will also send OTP to email
 # Build the project then go to the dist of the lib you want to publish
 cd dist/libs/antd-v5 && npm publish
 ```
