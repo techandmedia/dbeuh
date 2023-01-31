@@ -1,6 +1,6 @@
 {
   "name": "@wsh4and/utils",
-  "version": "0.0.6",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public",
     "@wsh4and:registry": "https://registry.npmjs.org/"

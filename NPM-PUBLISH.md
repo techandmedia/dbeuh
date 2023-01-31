@@ -66,14 +66,19 @@ https://stackoverflow.com/questions/41981686/getting-error-402-while-publishing-
 npm publish --access=public
 ```
 
+MAKE SURE EVERYTIME YOU UPDATE THE PACKAGE, UPDATE THE VERSION NUMBER
+
 ```json
-// Or add this to package.json
+// Or add this to package.json on each library that you want to publish
 {
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "private": false
 }
 ```
+
+If there's seem the action on github not running the publish command; it's probably that the package is private OR the version number is not updated
 
 When publishing a package to npm, make sure to add comment to make sure the correct package is published. For example, to publish a antd package, add "publish-antd" in the comment.
 List of relevant comment. Add all of them if you make changes for all packages at the same time and want to publish them together
@@ -84,3 +89,11 @@ List of relevant comment. Add all of them if you make changes for all packages a
 
 If you dont want to publish the package, make sure to add this in the comment
 SKIP SCRIPTS
+
+How to publish manually
+
+```bash
+# From the root of your project
+# Build the project then go to the dist of the lib you want to publish
+cd dist/libs/antd-v5 && npm publish
+```
