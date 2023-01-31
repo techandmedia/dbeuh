@@ -93,7 +93,9 @@ SKIP SCRIPTS
 How to publish manually
 
 ```bash
-# From the root of your project
+# From the root of your project, login to your npm account
+# Usually the token expired after 1 year
+npm login
 # Build the project then go to the dist of the lib you want to publish
 cd dist/libs/antd-v5 && npm publish
 ```
