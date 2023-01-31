@@ -87,6 +87,8 @@ List of relevant comment. Add all of them if you make changes for all packages a
 - publish-utils
 - publish-antd-v5
 
+Seems 'publish-antd-v5' will trigger action 'publish-antd' as well
+
 If you dont want to publish the package, make sure to add this in the comment
 SKIP SCRIPTS
 
