@@ -6,12 +6,12 @@ name: Node.js Package
 # Perform the action when we manually create a release through Github UI
 # Code > Releases > Manually add an increment number
 # If current is 0.0.1, then add 0.0.2 and press enter
-on:
-  release:
-    types: [created]
 # on:
-#   push:
-#     branches: [main]
+#   release:
+#     types: [created]
+on:
+  push:
+    branches: [main]
 
 jobs:
   build:
