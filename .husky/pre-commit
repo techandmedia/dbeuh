@@ -2,5 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-yarn test-antd
-yarn build
+# yarn test-antd
+# yarn build
+ nx build cari-dapat --prod

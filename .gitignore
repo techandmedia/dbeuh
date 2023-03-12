@@ -43,3 +43,6 @@ apps/next-antd-example/.env.local
 
 /libs/antd-v5/node_modules
 apps/next-antd-v5/.env.local
+
+# Next.js
+.next

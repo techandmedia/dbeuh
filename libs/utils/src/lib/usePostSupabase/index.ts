@@ -4,11 +4,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { PaginationProps } from '@wsh4and/antd-v5';
-import { IDataResponse, responseDefault } from '../usePostData';
 import { createClient } from '@supabase/supabase-js';
-import { validatePagination } from '../table-utils';
-import { IPagination } from '../usePostData/index';
+import { PaginationProps } from 'antd';
+
+export interface IPagination {
+  page: number;
+  size: number;
+  totalContent: number | null | undefined;
+}
+
+export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
+
+export interface IDataResponse {
+  data: any | null;
+  code: number | null | undefined;
+  loading?: boolean;
+  title?: string;
+  message?: string;
+  pagination?: IPagination;
+}
 
 export interface ISupabase {
   data?: {
@@ -20,12 +34,38 @@ export interface ISupabase {
   };
 }
 
+export const responseDefault: IDataResponse = {
+  code: null,
+  data: null,
+  loading: true,
+};
+
 export function supabaseClient(options?: any) {
   return createClient(
     process.env['NX_SUPABASE_URL'] || '',
     process.env['NX_SUPABASE_ANON_KEY'] || '',
     options
   );
+}
+
+export function validatePagination(data: IDataResponse | any): any | null {
+  if (Array.isArray(data.data) && data.data.length > 0) {
+    /**
+     * Adding number when user change page
+     * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
+     */
+    const numberAddition = data.pagination?.page
+      ? data.pagination.page * data.pagination.size - data.pagination.size
+      : 0;
+    const newData: any[] = data.data.map((d: any, index: number) => {
+      const key = { key: index + 1 + numberAddition };
+      return { ...key, ...d };
+    });
+
+    return newData;
+  }
+
+  return data.data;
 }
 
 async function postSupa(options: ISupabase): Promise<IDataResponse> {

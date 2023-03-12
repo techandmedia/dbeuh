@@ -83,6 +83,15 @@ If there's seem the action on github not running the publish command; it's proba
 When publishing a package to npm, make sure to add comment to make sure the correct package is published. For example, to publish a antd package, add "publish-antd" in the comment.
 List of relevant comment. Add all of them if you make changes for all packages at the same time and want to publish them together
 
+UPDATE: this must be put in the TITLE of the commit, not in the description to be able to trigger publishing command in npm-publish.yml file
+
+```json
+// From npm-publish.yml file
+// Find a way to get the descrption message instead
+// https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#push
+if: "contains(github.event.head_commit.message, 'publish-antd-v5')"
+```
+
 - publish-antd
 - publish-utils
 - publish-antd-v5
