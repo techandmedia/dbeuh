@@ -1,4 +1,5 @@
 {
+  "name": "antd-v5",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/antd-v5/src",
   "projectType": "library",
@@ -33,7 +34,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/antd-v5"],
+      "outputs": ["{workspaceRoot}/coverage/libs/antd-v5"],
       "options": {
         "jestConfig": "libs/antd-v5/jest.config.ts",
         "passWithNoTests": true

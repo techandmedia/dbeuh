@@ -1,5 +1,5 @@
 {
-  "root": "libs/antd",
+  "name": "antd",
   "sourceRoot": "libs/antd/src",
   "projectType": "library",
   "tags": [],
@@ -33,9 +33,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/antd"],
+      "outputs": ["{workspaceRoot}/coverage/libs/antd"],
       "options": {
-        "jestConfig": "libs/antd/jest.config.js",
+        "jestConfig": "libs/antd/jest.config.ts",
         "passWithNoTests": true
       }
     }

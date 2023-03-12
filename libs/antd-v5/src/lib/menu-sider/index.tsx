@@ -1,7 +1,10 @@
-import { Menu, MenuTheme, Sider } from '../../index';
+// import { Menu, MenuTheme, Sider } from '../../index';
+import { Menu, MenuTheme, Layout } from 'antd';
 import { MenuMode } from 'rc-menu/lib/interface';
 import { CSSProperties } from 'react';
 import { IMenuProps } from '../menu-link/menu-link';
+
+const { Sider } = Layout;
 
 /* eslint-disable-next-line */
 export interface MenuSiderProps {

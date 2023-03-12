@@ -1,5 +1,5 @@
 {
-  "root": "apps/next-antd-example",
+  "name": "next-antd-example",
   "sourceRoot": "apps/next-antd-example",
   "projectType": "application",
   "targets": {
@@ -36,9 +36,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/next-antd-example"],
+      "outputs": ["{workspaceRoot}/coverage/apps/next-antd-example"],
       "options": {
-        "jestConfig": "apps/next-antd-example/jest.config.js",
+        "jestConfig": "apps/next-antd-example/jest.config.ts",
         "passWithNoTests": true
       }
     },
