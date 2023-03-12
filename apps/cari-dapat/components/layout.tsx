@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, theme, ConfigProvider } from 'antd';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import 'libs/antd-v5/node_modules/antd/dist/reset.css';
+// import '../../../node_modules/antd/dist/ reset.css';
 import { MainFooter } from './layout-footer';
 import { MainSider } from './layout-sider';
 import { MainHeader } from './layout-header';
