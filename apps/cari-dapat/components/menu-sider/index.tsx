@@ -35,5 +35,3 @@ export function MenuSider(props: MenuSiderProps) {
     </Sider>
   );
 }
-
-export default MenuSider;

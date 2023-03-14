@@ -15,8 +15,6 @@ import {
   useResponsive,
 } from './responsive-layout/responsive-layout';
 import { IMenuProps } from './menu-link/menu-link';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-// import '../../../node_modules/antd/dist/ reset.css';
 
 export const menu1: IMenuProps[] = [
   {
