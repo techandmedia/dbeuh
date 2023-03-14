@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react';
 import { Layout, Menu, MenuTheme } from 'antd';
 import { MenuMode } from 'rc-menu/lib/interface';
+import { CSSProperties } from 'react';
 import { IMenuProps } from '../menu-link/menu-link';
 
 const { Header } = Layout;
@@ -22,12 +22,13 @@ export function MenuHeader(props: MenuHeaderProps) {
         ...props.style,
       }}
     >
-      <Menu
+      TES
+      {/* <Menu
         theme={props.theme || 'light'}
         mode={props.mode || 'horizontal'}
         defaultSelectedKeys={props.defaultSelectedKeys}
         items={props.menus}
-      />
+      /> */}
     </Header>
   );
 }

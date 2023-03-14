@@ -8,4 +8,6 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/cari-dapat',
+  testEnvironment: 'jsdom',
+  testURL: 'http://localhost',
 };

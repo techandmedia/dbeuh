@@ -1,6 +1,7 @@
-import { TableColumnsType } from 'antd';
-import { ISupabase, usePostSupabase } from '../utils/usePostSupabase';
 import { useEffect } from 'react';
+import { Button, Divider, Space, TableColumnsType } from 'antd';
+import { Table } from '../components/table/table';
+import { ISupabase, usePostSupabase } from '../utils/usePostSupabase';
 
 const PARAMS: ISupabase = {
   // Schema public sudah default, tidak perlu define
@@ -10,6 +11,16 @@ const PARAMS: ISupabase = {
     // select: 'item_code, item_name',
     page: 1,
     size: 5,
+  },
+};
+
+const PARAMS2: ISupabase = {
+  data: {
+    schema: 'ksk',
+    table: 'v_cart', // getting data from a 'view' table
+    select: '*',
+    page: 1,
+    size: 10,
   },
 };
 
@@ -38,19 +49,82 @@ export function remapColumns(): TableColumnsType {
 
 export default function Page() {
   const columns = remapColumns();
-  const [response, pagination, getDataCoba] = usePostSupabase(PARAMS);
+  const [category, pagination, getCategory] = usePostSupabase(PARAMS);
 
   useEffect(() => {
-    console.log(response);
-  }, [response]);
+    console.log(category);
+  }, [category]);
 
   return (
-    <div>
+    <>
       List Kategori Produk
-      <ul>
-        {response.code === 200 &&
-          response.data.map(category => <li key={category.id}>{category.name}</li>)}
-      </ul>
-    </div>
+      {/* <Notification response={category} /> */}
+      <Space wrap>
+        <Button
+          type="default"
+          onClick={() => {
+            getCategory({ ...PARAMS, data: { ...PARAMS.data, page: 1 } });
+          }}
+        >
+          Refresh Data at 1st page
+        </Button>
+        <Button
+          type="primary"
+          onClick={() =>
+            getCategory({
+              ...PARAMS,
+              data: { ...PARAMS.data, page: pagination.current },
+            })
+          }
+        >
+          Refresh Data at current page
+        </Button>
+      </Space>
+      <br />
+      <Divider type="horizontal" style={{ color: 'orange', fontSize: 10 }} />
+      <Table
+        columns={columns}
+        dataSource={category.data}
+        bordered
+        // scrolly={200}
+        scrollx={300}
+        loading={category.loading}
+        pagination={pagination}
+        rowKey="key"
+      />
+      <Divider type="horizontal" style={{ color: 'orange', fontSize: 10 }} />{' '}
+      <Space wrap>
+        <Button
+          type="default"
+          onClick={() => {
+            getCategory({ ...PARAMS2, data: { ...PARAMS2.data, page: 1 } });
+          }}
+        >
+          Refresh Data at 1st page
+        </Button>
+        <Button
+          type="primary"
+          onClick={() =>
+            getCategory({
+              ...PARAMS2,
+              data: { ...PARAMS2.data, page: pagination.current },
+            })
+          }
+        >
+          Refresh Data at current page
+        </Button>
+      </Space>
+      <br />
+      <Table
+        columns={columns}
+        dataSource={category.data}
+        bordered
+        // scrolly={200}
+        scrollx={300}
+        loading={category.loading}
+        pagination={pagination}
+        rowKey="key"
+      />
+    </>
   );
 }

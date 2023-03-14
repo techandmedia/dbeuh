@@ -6,6 +6,7 @@ import { IMenuProps } from '../menu-link/menu-link';
 
 const { Sider } = Layout;
 
+/* eslint-disable-next-line */
 export interface MenuSiderProps {
   styleMenu?: CSSProperties;
   theme?: MenuTheme;

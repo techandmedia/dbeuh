@@ -4,4 +4,4 @@
 npx lint-staged
 # yarn test-antd
 # yarn build
- nx build cari-dapat --prod
+yarn build-cari-dapat

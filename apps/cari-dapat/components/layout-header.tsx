@@ -1,7 +1,7 @@
-import { MenuOutlined, RetweetOutlined } from '@ant-design/icons';
 import { Button, Col, Row, theme } from 'antd';
+import { MenuOutlined, RetweetOutlined } from '@ant-design/icons';
 import { IMainResponsive, menu1 } from './layout';
-import MenuHeader from './menu-header';
+import { MenuHeader } from './menu-header';
 import { renderMenuList } from './menu-link/menu-link';
 
 export function MainHeader(props: IMainResponsive) {
