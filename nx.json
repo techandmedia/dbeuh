@@ -34,7 +34,8 @@
       },
       "library": {
         "style": "css",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "none"
       }
     },
     "@nrwl/next": {
@@ -44,7 +45,6 @@
       }
     }
   },
-  "defaultProject": "next-antd-v5",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],

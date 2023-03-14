@@ -6,49 +6,13 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { PaginationProps } from 'antd';
-
-export interface IPagination {
-  page: number;
-  size: number;
-  totalContent: number | null | undefined;
-}
-
-export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
-
-export interface IDataResponse {
-  data: any | null;
-  code: number | null | undefined;
-  loading?: boolean;
-  title?: string;
-  message?: string;
-  pagination?: IPagination;
-}
-
-export interface ISupabase {
-  data?: {
-    schema?: string;
-    table: string;
-    select: string;
-    page: number;
-    size: number;
-  };
-}
-
-export const responseDefault: IDataResponse = {
-  code: null,
-  data: null,
-  loading: true,
-};
-
-export interface ISupabase {
-  data?: {
-    schema?: string;
-    table: string;
-    select: string;
-    page: number;
-    size: number;
-  };
-}
+import {
+  IDataResponse,
+  IPagination,
+  ISupabase,
+  responseDefault,
+} from 'libs/utils/src/lib/shared/interfaces-types';
+import { validatePagination } from 'libs/utils/src/lib/table-utils';
 
 export function supabaseClient(options?: any) {
   return createClient(
@@ -64,8 +28,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
   const { table, select, page, size } = options.data;
   const firstIndex = page * size - size;
   const secondIndex = page * size - 1;
-
-  console.log({ options });
 
   const { count, error: countError } = await supabase
     .from(table)
@@ -92,27 +54,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
     size: size,
     totalContent: count,
   };
-
-  function validatePagination(data: IDataResponse | any): any | null {
-    if (Array.isArray(data.data) && data.data.length > 0) {
-      /**
-       * Adding number when user change page
-       * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
-       */
-      const numberAddition = data.pagination?.page
-        ? data.pagination.page * data.pagination.size - data.pagination.size
-        : 0;
-      const newData: any[] = data.data.map((d: any, index: number) => {
-        const key = { key: index + 1 + numberAddition };
-        return { ...key, ...d };
-      });
-
-      return newData;
-    }
-
-    return data.data;
-  }
-
   const withPagination = validatePagination({
     data: data,
     pagination: pagination,

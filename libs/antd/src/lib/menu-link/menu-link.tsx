@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 
+/* eslint-disable-next-line */
 export interface MenuLinkProps {
   key: string;
   label?: string;

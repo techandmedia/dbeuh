@@ -1,22 +1,22 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Breadcrumb, theme, ConfigProvider } from 'antd';
 import {
   CopyOutlined,
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, theme, ConfigProvider } from 'antd';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-// import '../../../node_modules/antd/dist/ reset.css';
-import { MainFooter } from './layout-footer';
-import { MainSider } from './layout-sider';
 import { MainHeader } from './layout-header';
-import { IMenuProps } from './menu-link/menu-link';
+import { MainSider } from './layout-sider';
+import { MainFooter } from './layout-footer';
 import {
   IUseResponsive,
   ResponsiveLayout,
   useResponsive,
 } from './responsive-layout/responsive-layout';
+import { IMenuProps } from './menu-link/menu-link';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// import '../../../node_modules/antd/dist/ reset.css';
 
 export const menu1: IMenuProps[] = [
   {

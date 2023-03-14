@@ -7,15 +7,41 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { PaginationProps } from 'antd';
 
-export interface IPagination {
+function validatePagination(data: IDataResponse | any): any | null {
+  if (Array.isArray(data.data) && data.data.length > 0) {
+    /**
+     * Adding number when user change page
+     * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
+     */
+    const numberAddition = data.pagination?.page
+      ? data.pagination.page * data.pagination.size - data.pagination.size
+      : 0;
+    const newData: any[] = data.data.map((d: any, index: number) => {
+      const key = { key: index + 1 + numberAddition };
+      return { ...key, ...d };
+    });
+
+    return newData;
+  }
+
+  return data.data;
+}
+
+const responseDefault: IDataResponse = {
+  code: null,
+  data: null,
+  loading: true,
+};
+
+interface IPagination {
   page: number;
   size: number;
   totalContent: number | null | undefined;
 }
 
-export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
+type TData = string[] | number[] | string | number | Record<string, unknown> | null;
 
-export interface IDataResponse {
+interface IDataResponse {
   data: any | null;
   code: number | null | undefined;
   loading?: boolean;
@@ -24,23 +50,7 @@ export interface IDataResponse {
   pagination?: IPagination;
 }
 
-export interface ISupabase {
-  data?: {
-    schema?: string;
-    table: string;
-    select: string;
-    page: number;
-    size: number;
-  };
-}
-
-export const responseDefault: IDataResponse = {
-  code: null,
-  data: null,
-  loading: true,
-};
-
-export interface ISupabase {
+interface ISupabase {
   data?: {
     schema?: string;
     table: string;
@@ -64,8 +74,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
   const { table, select, page, size } = options.data;
   const firstIndex = page * size - size;
   const secondIndex = page * size - 1;
-
-  console.log({ options });
 
   const { count, error: countError } = await supabase
     .from(table)
@@ -92,27 +100,6 @@ async function postSupa(options: ISupabase): Promise<IDataResponse> {
     size: size,
     totalContent: count,
   };
-
-  function validatePagination(data: IDataResponse | any): any | null {
-    if (Array.isArray(data.data) && data.data.length > 0) {
-      /**
-       * Adding number when user change page
-       * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
-       */
-      const numberAddition = data.pagination?.page
-        ? data.pagination.page * data.pagination.size - data.pagination.size
-        : 0;
-      const newData: any[] = data.data.map((d: any, index: number) => {
-        const key = { key: index + 1 + numberAddition };
-        return { ...key, ...d };
-      });
-
-      return newData;
-    }
-
-    return data.data;
-  }
-
   const withPagination = validatePagination({
     data: data,
     pagination: pagination,

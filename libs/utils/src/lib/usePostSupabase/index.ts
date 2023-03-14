@@ -6,39 +6,8 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { PaginationProps } from 'antd';
-
-export interface IPagination {
-  page: number;
-  size: number;
-  totalContent: number | null | undefined;
-}
-
-export type TData = string[] | number[] | string | number | Record<string, unknown> | null;
-
-export interface IDataResponse {
-  data: any | null;
-  code: number | null | undefined;
-  loading?: boolean;
-  title?: string;
-  message?: string;
-  pagination?: IPagination;
-}
-
-export interface ISupabase {
-  data?: {
-    schema?: string;
-    table: string;
-    select: string;
-    page: number;
-    size: number;
-  };
-}
-
-export const responseDefault: IDataResponse = {
-  code: null,
-  data: null,
-  loading: true,
-};
+import { IDataResponse, IPagination, ISupabase, responseDefault } from '../shared/interfaces-types';
+import { validatePagination } from '../table-utils';
 
 export function supabaseClient(options?: any) {
   return createClient(
@@ -46,26 +15,6 @@ export function supabaseClient(options?: any) {
     process.env['NX_SUPABASE_ANON_KEY'] || '',
     options
   );
-}
-
-export function validatePagination(data: IDataResponse | any): any | null {
-  if (Array.isArray(data.data) && data.data.length > 0) {
-    /**
-     * Adding number when user change page
-     * Without this algo, row number will be the same for each page: 1-10 (if the page size is 10)
-     */
-    const numberAddition = data.pagination?.page
-      ? data.pagination.page * data.pagination.size - data.pagination.size
-      : 0;
-    const newData: any[] = data.data.map((d: any, index: number) => {
-      const key = { key: index + 1 + numberAddition };
-      return { ...key, ...d };
-    });
-
-    return newData;
-  }
-
-  return data.data;
 }
 
 async function postSupa(options: ISupabase): Promise<IDataResponse> {
