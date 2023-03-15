@@ -1,0 +1,12 @@
+{
+  "name": "@beuh/utils",
+  "version": "1.0.3",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  }
+}

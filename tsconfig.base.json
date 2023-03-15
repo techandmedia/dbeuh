@@ -15,11 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myorg/supabase": ["libs/supabase/src/index.ts"],
-      "@wsh4and/antd": ["libs/antd/src/index.ts"],
-      "@wsh4and/antd-v5": ["libs/antd-v5/src/index.ts"],
-      "@wsh4and/supabase-v2": ["libs/supabase-v2/src/index.ts"],
-      "@wsh4and/utils": ["libs/utils/src/index.ts"]
+      "@beuh/utils": ["packages/utils/src/index.ts"],
+      "@wsh4and/antd": ["packages/antd/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
