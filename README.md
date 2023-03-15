@@ -27,9 +27,9 @@ Previous one will still be available but moving forward will be replaced by v5 b
 
 ```bash
 # Run the example project based on NextJs and Ant Design
-yarn next-antd
+yarn cari-dapat:dev
 # OR
-npm run next-antd
+npm run cari-dapat:dev
 ```
 
 ## Testing
