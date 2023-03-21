@@ -18,9 +18,8 @@ import {
 
 export const menu1: IMenuProps[] = [
   {
-    label: 'Home',
+    label: <div className="logo">cari-dapat</div>,
     key: '/',
-    icon: <LaptopOutlined />,
   },
   {
     label: 'Coba',
@@ -121,7 +120,7 @@ export default function AppLayout({ children }) {
       <ResponsiveLayout
         header={<MainHeader style={style} setStyle={setStyle} />}
         // breadcrumb={<MainBreadCrumb style={style} />}
-        sider={<MainSider style={style} />}
+        // sider={<MainSider style={style} />}
         footer={<MainFooter style={style} />}
         rootLayoutStyle={style.rootLayoutStyle}
         innerLayoutStyle={style.innerLayoutStyle}

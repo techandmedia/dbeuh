@@ -48,70 +48,70 @@ export function useResponsive(param: IUseTheme) {
       height: '100vh',
       backgroundColor: 'white',
     },
-    outerLayoutStyle: { marginLeft: 24, border: '2px solid red' },
-    innerLayoutStyle: { padding: 24 },
-    contentStyle: { overflow: 'scroll', width: '100%' },
+    outerLayoutStyle: { marginLeft: 0 },
+    innerLayoutStyle: { padding: 0 },
+    contentStyle: { overflowY: 'auto', width: '100%' },
     theme: param.theme || 'light',
     alignment: param.alignment || 'center',
   });
 
   useEffect(() => {
     if (screens.xxl) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 64px',
+          padding: param.alignment === 'left' ? 0 : '24px 64px',
         },
       }));
     } else if (screens.xl && !screens.xxl) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 48px',
+          padding: param.alignment === 'left' ? 0 : '24px 48px',
         },
       }));
     } else if (screens.lg && !screens.xl) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 32px',
+          padding: param.alignment === 'left' ? 0 : '24px 32px',
         },
       }));
     } else if (screens.md && !screens.lg) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '20px 32px',
+          padding: param.alignment === 'left' ? 0 : '20px 32px',
         },
       }));
     } else if (screens.sm && !screens.md) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '16px',
+          padding: param.alignment === 'left' ? 0 : '16px',
         },
       }));
     } else {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         innerLayoutStyle: { ...prev.innerLayoutStyle, padding: '12px' },
       }));
     }
 
     if (screens.xs && !screens.md) {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         mobile: true,
         collapsed: true,
         outerLayoutStyle: { ...prev.outerLayoutStyle, marginLeft: 0 },
       }));
     } else {
-      setStyle(prev => ({
+      setStyle((prev) => ({
         ...prev,
         mobile: false,
         collapsed: false,
@@ -134,7 +134,8 @@ export function useResponsive(param: IUseTheme) {
  * @returns the main content
  */
 export function ResponsiveLayout(props: IResponsiveLayoutProps) {
-  const { rootLayoutStyle, innerLayoutStyle, outerLayoutStyle, contentStyle } = props;
+  const { rootLayoutStyle, innerLayoutStyle, outerLayoutStyle, contentStyle } =
+    props;
   const { header, breadcrumb, children, sider, footer } = props;
 
   return (
