@@ -23,19 +23,14 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: cd libs/antd-v5 && yarn && cd .. && cd .. && yarn && yarn build-v5
-      # - name: publish-antd
-      #   if: "contains(github.event.head_commit.message, 'publish-antd')"
-      #   run: cd dist/libs/antd && npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: yarn
       - name: publish-utils
         if: "contains(github.event.head_commit.message, 'publish-utils')"
-        run: cd dist/libs/utils && npm publish
+        run: yarn publish-utils
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - name: publish-antd-v5
-        if: "contains(github.event.head_commit.message, 'publish-antd-v5')"
-        run: cd dist/libs/antd-v5 && npm publish
+      - name: publish-antd
+        if: "contains(github.event.head_commit.message, 'publish-antd')"
+        run: yarn publish-antd
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
