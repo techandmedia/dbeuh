@@ -48,9 +48,9 @@ export function useResponsive(param: IUseTheme) {
       height: '100vh',
       backgroundColor: 'white',
     },
-    outerLayoutStyle: { marginLeft: 24, border: '2px solid red' },
-    innerLayoutStyle: { padding: 24 },
-    contentStyle: { overflow: 'scroll', width: '100%' },
+    outerLayoutStyle: {},
+    innerLayoutStyle: { padding: 0 },
+    contentStyle: { overflowY: 'auto', width: '100%' },
     theme: param.theme || 'light',
     alignment: param.alignment || 'center',
   });
@@ -61,7 +61,7 @@ export function useResponsive(param: IUseTheme) {
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 64px',
+          padding: param.alignment === 'left' ? 0 : '24px 64px',
         },
       }));
     } else if (screens.xl && !screens.xxl) {
@@ -69,7 +69,7 @@ export function useResponsive(param: IUseTheme) {
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 48px',
+          padding: param.alignment === 'left' ? 0 : '24px 48px',
         },
       }));
     } else if (screens.lg && !screens.xl) {
@@ -77,7 +77,7 @@ export function useResponsive(param: IUseTheme) {
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '24px 32px',
+          padding: param.alignment === 'left' ? 0 : '24px 32px',
         },
       }));
     } else if (screens.md && !screens.lg) {
@@ -85,7 +85,7 @@ export function useResponsive(param: IUseTheme) {
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '20px 32px',
+          padding: param.alignment === 'left' ? 0 : '20px 32px',
         },
       }));
     } else if (screens.sm && !screens.md) {
@@ -93,7 +93,7 @@ export function useResponsive(param: IUseTheme) {
         ...prev,
         innerLayoutStyle: {
           ...prev.innerLayoutStyle,
-          padding: param.alignment === 'left' ? '16px 12px' : '16px',
+          padding: param.alignment === 'left' ? 0 : '16px',
         },
       }));
     } else {
@@ -140,14 +140,14 @@ export function ResponsiveLayout(props: IResponsiveLayoutProps) {
 
   return (
     <Layout style={rootLayoutStyle}>
-      {sider}
+      {header}
       <Layout style={outerLayoutStyle}>
-        {header}
+        {sider}
         <Layout style={innerLayoutStyle}>
           {breadcrumb}
           <Content style={contentStyle}>{children}</Content>
+          {footer}
         </Layout>
-        {footer}
       </Layout>
     </Layout>
   );

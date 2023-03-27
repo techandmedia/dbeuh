@@ -10,7 +10,7 @@ export interface MenuLinkProps {
 
 export interface IMenuProps {
   key: string;
-  label?: string;
+  label?: React.ReactNode;
   icon?: React.ReactNode;
   children?: IMenuProps[];
 }
@@ -42,7 +42,7 @@ export function renderMenuItem(item: IMenuProps) {
 }
 
 export function renderMenuList(items: IMenuProps[]) {
-  const menus: IMenuProps[] = items.map(item => {
+  const menus: IMenuProps[] = items.map((item) => {
     if (item.children) {
       const renderParent = renderMenuItem(item);
       const renderChild = renderMenuList(item.children);

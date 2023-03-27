@@ -24,7 +24,7 @@ export function MainHeader(props: IMainResponsive) {
         backgroundColor: props.style.theme === 'light' ? '#ffffff' : '#001529',
       }}
     >
-      <Col xs={12} md={2} style={buttonColStyle}>
+      <Col xs={12} md={0} style={buttonColStyle}>
         <Button
           icon={<MenuOutlined style={{ color: token.colorPrimary }} />}
           onClick={() => {
@@ -33,18 +33,18 @@ export function MainHeader(props: IMainResponsive) {
               collapsed: prev.collapsed ? false : true,
               outerLayoutStyle: {
                 ...prev.outerLayoutStyle,
-                marginLeft: prev.collapsed ? 24 : 0,
+                marginLeft: prev.collapsed ? 0 : 0,
               },
             }));
           }}
-        ></Button>
+        />
       </Col>
       <Col xs={2} md={20}>
         <MenuHeader menus={menuHeader} defaultSelectedKeys={['/']} />
       </Col>
       <Col
         span={2}
-        style={{ ...commonStyle, marginRight: props.style.mobile ? 24 : 0 }}
+        style={{ ...commonStyle, marginRight: props.style.mobile ? 0 : 0 }}
       >
         <Button
           icon={<RetweetOutlined style={{ color: token.colorPrimary }} />}
