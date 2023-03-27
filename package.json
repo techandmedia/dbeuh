@@ -6,6 +6,7 @@
     "cari-dapat:dev": "nx serve cari-dapat",
     "cari-dapat:prod": "nx build cari-dapat --prod",
     "publish-antd": "nx build antd --prod && cd dist/packages/antd && npm publish",
+    "publish-utils": "nx build utils --prod && cd dist/packages/utils && npm publish",
     "prepare": "husky install"
   },
   "private": true,
