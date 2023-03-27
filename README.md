@@ -40,3 +40,5 @@ yarn test-antd
 # OR
 npm run test-antd
 ```
+
+Test build
