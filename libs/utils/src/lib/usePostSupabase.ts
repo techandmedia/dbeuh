@@ -17,10 +17,21 @@ export interface ISupabase {
   options?: {
     message?: string;
   };
+  client?: {
+    supabaseUrl: string;
+    supabaseKey: string;
+  };
 }
 
-export function supabaseClient(options?: any) {
-  return createClient(process.env['NX_SUPABASE_URL'] || '', process.env['NX_SUPABASE_ANON_KEY'] || '', options);
+export function supabaseClient(options?: ISupabase) {
+  return createClient(
+    process.env['NX_SUPABASE_URL'] || process.env['NEXT_PUBLIC_SUPABASE_URL'] || options?.client?.supabaseUrl || '',
+    process.env['NX_SUPABASE_ANON_KEY'] ||
+      process.env['NEXT_PUBLIC_SUPABASE_ANON_KEY'] ||
+      options?.client?.supabaseKey ||
+      '',
+    options
+  );
 }
 
 async function postSupa(options: ISupabase): Promise<IDataResponse> {

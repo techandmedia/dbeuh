@@ -12,6 +12,7 @@ const PARAMS: ISupabase = {
     page: 1,
     pageSize: 5,
   },
+  client: { supabaseUrl: '', supabaseKey: '' },
 };
 
 const PARAMS2: ISupabase = {
