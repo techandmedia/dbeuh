@@ -10,24 +10,15 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@beuh/utils": [
-        "packages/utils/src/index.ts"
-      ],
-      "@wsh4and/antd": [
-        "packages/antd/src/index.ts"
-      ]
+      "@wsh4and/antd": ["libs/antd/src/index.ts"],
+      "@wsh4and/utils": ["libs/utils/src/index.ts"],
+      "`@wsh4and/utils2`": ["libs/utils2/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

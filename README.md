@@ -1,44 +1,66 @@
 # Dbeuh
 
-This project was generated using [Nx](https://nx.dev).
+Update on using anon key / service key
+[StackOverflow](https://stackoverflow.com/questions/75230324/supabase-row-level-security-policy-rls-how-to-limit-access-with-supabase-ano/75230657?noredirect=1#comment132753295_75230657)
 
-- [Readme NX](/README-NX.md)
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Smart, Fast and Extensible Build System**
-
-## This UI consist of
-
-We are moving from previous Ant Design version to version 5
-
-v1.0.0
-
-- [Example page and data fetching using Supabase](/apps/next-antd-v5/README.md)
-- [Adding Supabase](/libs/utils/README.md)
-- [Components using Ant Design v5](/libs/antd-v5/README.md)
-
-Previous one will still be available but moving forward will be replaced by v5 by default
-
-- [Custom Ant Design](/libs/antd/README.md)
-- [Simple Utilities](/libs/utils/README.md)
-
-## Running Next-Antd-Example
-
-```bash
-# Run the example project based on NextJs and Ant Design
-yarn cari-dapat:dev
-# OR
-npm run cari-dapat:dev
+```sql
+GRANT USAGE ON SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT USAGE ON SCHEMA cst TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA cst TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT USAGE ON SCHEMA ksk TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ksk TO postgres, anon, authenticated, service_role, dashboard_user;
+DROP SCHEMA skm CASCADE;
 ```
 
-## Testing
+Create Policy - Example
 
-```bash
-# Testing Ant Design custom components
-yarn test-antd
-# OR
-npm run test-antd
+```sql
+CREATE POLICY "Enable read access for authenticated users" ON "public"."item"
+AS PERMISSIVE FOR SELECT
+TO authenticated
+USING (true)
+
+===
+CREATE POLICY "Read Acccess to Authenticated Users" ON "ksk"."cart"
+FOR SELECT
+TO authenticated
+USING (true)
+
+
+===
+CREATE POLICY "Grant all access to authenticated users" ON "public"."item"
+AS PERMISSIVE FOR ALL
+TO authenticated
 ```
 
-Test build
+If you want full control of your database by preventing unauthorised access to all tables, you have to use
+supabase token, in which you have to pass NX_SUPABASE_SERVICE_ROLE_KEY when creating supabase client
+As using NX_SUPABASE_ANON_KEY will not work even though you already pass the token
+
+```js
+export function supabaseClient(options, token) {
+  const options = {
+    ...options,
+    schema: schema || 'public',
+    global: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  };
+
+  return createClient(
+    process.env.NX_SUPABASE_URL,
+    process.env.NX_SUPABASE_SERVICE_ROLE_KEY,
+    // NX_SUPABASE_ANON_KEY
+    options
+  );
+}
+```
+
+```bash
+curl 'https://qahrpqxcgrumwkayyowt.co/rest/v1/brand?select=*' \
+-H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhaHJwcXhjZ3J1bXdrYXl5b3d0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI5MjA0MDEsImV4cCI6MTk4ODQ5NjQwMX0.71bfd4Z8jccfoPLJn-yxolOQNlYoJuY9TLOYvLRgPoY" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjc0MjE5NTc4LCJzdWIiOiIwMDJkYjY1ZS1lZGNmLTQyNTMtODA0MS1kNDgzNjRlMTY3ODAiLCJlbWFpbCI6ImVrby5hbmRyaTlAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6e30sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE2NzQyMTU5Nzh9XSwic2Vzc2lvbl9pZCI6IjYwNWVlY2EwLTNjZTUtNDE0Mi05MDE1LTVmZmIwZTZhNmM0NSJ9.o9jsXoErMywRWe_SJ49d4mERSwY5RZ3WQbVwwtXc4P4"
+```
