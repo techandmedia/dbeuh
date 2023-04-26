@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "dbeuhv2",
+  "npmScope": "dbeuh",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
@@ -17,12 +17,11 @@
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
+    "e2e": {
+      "inputs": ["default", "^production"]
+    },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ]
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"]
     }
   },
   "namedInputs": {
@@ -36,17 +35,13 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
   },
-  "workspaceLayout": {
-    "appsDir": "packages",
-    "libsDir": "packages"
-  },
   "generators": {
     "@nrwl/react": {
       "application": {
         "babel": true
       },
       "library": {
-        "unitTestRunner": "none"
+        "unitTestRunner": "jest"
       }
     },
     "@nrwl/next": {

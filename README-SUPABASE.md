@@ -6,6 +6,10 @@ Update on using anon key / service key
 ```sql
 GRANT USAGE ON SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA skm TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT USAGE ON SCHEMA cst TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA cst TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT USAGE ON SCHEMA ksk TO postgres, anon, authenticated, service_role, dashboard_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ksk TO postgres, anon, authenticated, service_role, dashboard_user;
 DROP SCHEMA skm CASCADE;
 ```
 
